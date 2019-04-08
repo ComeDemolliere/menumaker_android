@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment implements IListenItem{
 
         final View view = inflater.inflate(R.layout.home_fragment, container, false);
 
-        DishesAdapter dishesAdapter = new DishesAdapter(getContext(), Dishes.getDishesName());
+        DishesAdapter dishesAdapter = new DishesAdapter(getContext(), Dishes.getDishes());
 
         ListView dishes = view.findViewById(R.id.dishes);
 

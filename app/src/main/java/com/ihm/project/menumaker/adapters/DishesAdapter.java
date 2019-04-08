@@ -1,28 +1,28 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.fragments.IListenItem;
+import com.ihm.project.menumaker.models.Dish;
 
 import java.util.List;
 
 public class DishesAdapter extends BaseAdapter {
-    private List listView;
+    private List<Dish> listView;
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private IListenItem listViewListen;
 
-    public DishesAdapter(Context context, List listView){
-        System.out.println("la");
+    public DishesAdapter(Context context, List<Dish> listView){
         this.listView = listView;
-        System.out.println(listView);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -44,17 +44,17 @@ public class DishesAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //(1) : inflate layout
-        ConstraintLayout layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.dishes_layout, parent, false);
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.dishes_layout, parent, false);
 
 
         //(2) : get widgets
         TextView name = layoutItem.findViewById(R.id.name);
+        ImageView image = layoutItem.findViewById(R.id.image);
 
 
         //(3) : set values to widget
-        name.setText(listView.get(position)+"");
-        Log.d("ADAPTER","position="+position);
-        Log.d("ADAPTER","name="+listView.get(position));
+        name.setText(listView.get(position).getName());
+        image.setImageResource(listView.get(position).getImage());
 
         //(4) : set tag as index
         name.setTag(position);

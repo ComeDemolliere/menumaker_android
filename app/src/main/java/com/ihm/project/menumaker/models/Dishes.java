@@ -1,29 +1,31 @@
 package com.ihm.project.menumaker.models;
 
 import android.media.Image;
+import android.widget.ImageView;
+
+import com.ihm.project.menumaker.R;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Dishes {
-    private static List<String> dishesName = new ArrayList<>();
+    private static List<Dish> dishes = new ArrayList<>();
 
 
     public static void init (){
-        dishesName.clear();
-        dishesName.add("carbonara");
-        dishesName.add("risotto");
+        dishes.clear();
+        dishes.add(new Dish("carbonara", R.drawable.carbonara, "blabla"));
+        dishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
     }
 
-    public static void add(String name) {
-        dishesName.add(name);
+    public static void add(Dish dish) {
+        dishes.add(dish);
     }
 
-    public static List<String> getDishesName() {
-        return dishesName;
+    public static List<Dish> getDishes() {
+        return dishes;
     }
 
-    public static int size() { return dishesName.size();}
+    public static int size() { return dishes.size();}
 
 }
