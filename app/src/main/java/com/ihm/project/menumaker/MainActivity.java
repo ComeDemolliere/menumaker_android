@@ -6,12 +6,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.models.Dishes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
         //home view by default
         navigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Dishes.init();
     }
 
     private void openFragment(Fragment fragment) {
