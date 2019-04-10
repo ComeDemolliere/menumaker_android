@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.adapters.DishesAdapter;
+import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class HomeFragment extends Fragment implements IListenItem{
@@ -39,9 +40,10 @@ public class HomeFragment extends Fragment implements IListenItem{
     }
 
     @Override
-    public void onClickName(String name) {
+    public void onClickItem(Dish dish) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("PLATS");
+        builder.setTitle(dish.getName());
+        builder.setMessage(dish.getReceipe());
         builder.show();
     }
 }

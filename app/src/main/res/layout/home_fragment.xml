@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_home" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -21,9 +16,10 @@
 
     <ListView
         android:id="@+id/dishes"
-        android:layout_width="300sp"
-        android:layout_centerInParent="true"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100sp" />
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="175dp" />
 
 </RelativeLayout>

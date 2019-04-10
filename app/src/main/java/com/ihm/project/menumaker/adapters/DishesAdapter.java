@@ -1,7 +1,6 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.fragments.IListenItem;
-import com.ihm.project.menumaker.models.Dish;
+import com.ihm.project.menumaker.Samples.Dish;
 
 import java.util.List;
 
@@ -57,15 +56,15 @@ public class DishesAdapter extends BaseAdapter {
         image.setImageResource(listView.get(position).getImage());
 
         //(4) : set tag as index
-        name.setTag(position);
+        layoutItem.setTag(position);
 
         //(5) : set listener on selected item
-        name.setOnClickListener(new View.OnClickListener() {
+        layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer position = (Integer)v.getTag();
                 //TODO vérifier si unécouteur==null ou si maListeDeDiplome==null
-                listViewListen.onClickName(listView.get(position)+"");
+                listViewListen.onClickItem(listView.get(position));
             }
         });
 

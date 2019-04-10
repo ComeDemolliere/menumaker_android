@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.models;
+package com.ihm.project.menumaker.Samples;
 
 import android.media.Image;
 import android.widget.ImageView;
