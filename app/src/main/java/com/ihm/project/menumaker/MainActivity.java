@@ -1,5 +1,6 @@
 package com.ihm.project.menumaker;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -60,13 +61,22 @@ public class MainActivity extends AppCompatActivity {
     private void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
     public void openDishFinder (View v) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, new DishFinderFragment());
+        transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void onBackPressed(View v){
+        if(getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStackImmediate();
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }

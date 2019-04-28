@@ -28,16 +28,17 @@
             android:theme="?attr/actionBarTheme" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageBack"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_centerVertical="true"
-            android:src="@drawable/left_arrow" />
+            android:src="@drawable/left_arrow"
+            android:onClick="onBackPressed"/>
     </RelativeLayout>
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/dishImage"
         android:layout_width="200sp"
         android:layout_height="200dp"
         android:src="@drawable/carbonara"
@@ -46,16 +47,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_toRightOf="@+id/imageView"
+        android:layout_toRightOf="@+id/dishImage"
         android:orientation="vertical"
         android:layout_below="@+id/toolbar">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/dishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Name" />
+
     </RelativeLayout>
 
 </RelativeLayout>
