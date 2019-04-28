@@ -23,9 +23,15 @@ public class HomeFragment extends Fragment implements IListenItem{
         return new HomeFragment();
     }
 
+    private LayoutInflater inflater;
+    private ViewGroup container;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        this.inflater = inflater;
+        this.container = container;
 
         final View view = inflater.inflate(R.layout.home_fragment, container, false);
 

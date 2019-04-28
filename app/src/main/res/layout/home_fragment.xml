@@ -12,7 +12,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="100sp"
-        android:text="À court d'idées ?" />
+        android:text="À court d'idées ?"
+        android:onClick="openDishFinder"/>
 
     <ListView
         android:id="@+id/dishes"

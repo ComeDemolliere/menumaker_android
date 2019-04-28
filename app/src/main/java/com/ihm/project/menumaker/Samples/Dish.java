@@ -1,8 +1,5 @@
 package com.ihm.project.menumaker.Samples;
 
-import android.media.Image;
-import android.widget.ImageView;
-
 import java.util.Date;
 import java.util.List;
 
