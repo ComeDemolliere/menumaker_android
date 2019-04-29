@@ -34,19 +34,13 @@ public class DishFinderFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        myContext = (FragmentActivity) activity;
-        super.onAttach(activity);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.dish_finder_fragment, container, false);
 
         RelativeLayout layoutItem = (RelativeLayout) view;
 
-        dishAdapter = new DishFinderSlidePagerAdapter(myContext.getSupportFragmentManager());
+        dishAdapter = new DishFinderSlidePagerAdapter(getChildFragmentManager());
         pager = layoutItem.findViewById(R.id.viewpager);
         pager.setAdapter(dishAdapter);
 
