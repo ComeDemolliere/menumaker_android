@@ -41,6 +41,10 @@ public class Dishes {
 
     public static int size() { return dishes.size();}
 
+    public static Dish getDish(int pos) {
+            return dishes.get(pos);
+    }
+
     public static Dish getRandomDish() {
         Random rand = new Random();
         pos = rand.nextInt(dishes.size());
