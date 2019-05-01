@@ -13,6 +13,7 @@ import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class MainActivity extends AppCompatActivity {
@@ -78,5 +79,9 @@ public class MainActivity extends AppCompatActivity {
         else{
             super.onBackPressed();
         }
+    }
+
+    public void validateDish(View v){
+        openFragment(new ValidateDishFragment());
     }
 }

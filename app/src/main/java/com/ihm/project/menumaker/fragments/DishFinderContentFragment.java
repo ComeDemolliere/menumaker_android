@@ -38,11 +38,13 @@ public class DishFinderContentFragment extends Fragment {
 
         ImageView image = layoutItem.findViewById(R.id.dishImage);
         TextView name = layoutItem.findViewById(R.id.dishName);
+        TextView recipe = layoutItem.findViewById(R.id.dishRecipe);
 
         if(getArguments() != null){
             Dish dish = Dishes.getDish(getArguments().getInt("EXTRA_DISH_POS"));
             image.setImageResource(dish.getImage());
             name.setText(dish.getName());
+            recipe.setText(dish.getReceipe());
         }
 
         return view;

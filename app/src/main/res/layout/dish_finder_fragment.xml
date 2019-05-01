@@ -18,7 +18,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="end"
-            android:text="Valider le plat" />
+            android:text="Valider le plat"
+            android:onClick="validateDish"/>
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
