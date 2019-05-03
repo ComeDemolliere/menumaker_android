@@ -1,25 +1,24 @@
 package com.ihm.project.menumaker;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DishFinderFragment dishFinderFragment;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -50,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         //home view by default
         navigation.setSelectedItemId(R.id.navigation_home);
+
+        dishFinderFragment = new DishFinderFragment();
     }
 
     @Override
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDishFinder (View v) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, new DishFinderFragment());
+        transaction.replace(R.id.container, dishFinderFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -78,5 +79,15 @@ public class MainActivity extends AppCompatActivity {
         else{
             super.onBackPressed();
         }
+    }
+
+    public void chooseDish(View v){
+        Dishes.setCurrentDish(Dishes.getDish(dishFinderFragment.getViewPager().getCurrentItem()));
+        openFragment(new ValidateDishFragment());
+    }
+
+    public void validateDish(View v){
+        Dishes.eatDish();
+        openFragment(new HomeFragment());
     }
 }

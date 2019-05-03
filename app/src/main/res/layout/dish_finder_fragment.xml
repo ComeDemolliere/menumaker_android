@@ -18,7 +18,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="end"
-            android:text="Valider le plat" />
+            android:text="Valider le plat"
+            android:onClick="chooseDish"/>
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -36,27 +37,24 @@
             android:onClick="onBackPressed"/>
     </RelativeLayout>
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <ImageView
-        android:id="@+id/dishImage"
-        android:layout_width="200sp"
-        android:layout_height="200dp"
-        android:src="@drawable/carbonara"
-        android:layout_below="@+id/toolbar"/>
+        xmlns:tools="http://schemas.android.com/tools"
 
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_toRightOf="@+id/dishImage"
-        android:orientation="vertical"
+
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/dishName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Name" />
+
+        <android.support.v4.view.ViewPager
+
+            android:id="@+id/viewpager"
+
+            android:layout_width="fill_parent"
+
+            android:layout_height="fill_parent" />
+
 
     </RelativeLayout>
 
