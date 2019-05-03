@@ -14,13 +14,13 @@
             android:id="@+id/provisions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_provisions" />
+            android:text="bo" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/shopping_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_shop" />
+            android:text="bo" />
 
     </android.support.design.widget.TabLayout>
 
@@ -32,7 +32,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="60dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/removing_fridge" />
+        android:text="bo" />
 
     <Button
         android:id="@+id/button5"
@@ -43,5 +43,5 @@
         android:layout_marginStart="261dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/validation_fridge" />
+        android:text="bo" />
 </RelativeLayout>
