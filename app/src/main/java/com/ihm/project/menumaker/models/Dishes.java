@@ -5,15 +5,17 @@ import com.ihm.project.menumaker.Samples.Dish;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Dishes {
     private static List<Dish> dishes = new ArrayList<>();
     private static List<Dish> dishesEaten = new ArrayList<>();
     private static int pos = 0;
+    private static Dish currentDish;
 
 
     public static void init (){
+        currentDish = null;
+
         //All dishes existing
         dishes.clear();
         dishes.add(new Dish("Carbonara", R.drawable.carbonara, "Etape 1\n" +
@@ -106,9 +108,17 @@ public class Dishes {
             return dishes.get(pos);
     }
 
-    public static Dish getRandomDish() {
-        Random rand = new Random();
-        pos = rand.nextInt(dishes.size());
-        return dishes.get(pos);
+    public static void eatDish(){
+        if(currentDish != null){
+            dishesEaten.add(currentDish);
+        }
+    }
+
+    public static Dish getCurrentDish(){
+        return currentDish;
+    }
+
+    public static void setCurrentDish(Dish d){
+        currentDish = d;
     }
 }

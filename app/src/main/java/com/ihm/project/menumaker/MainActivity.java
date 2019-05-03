@@ -81,7 +81,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void validateDish(View v){
+    public void chooseDish(View v){
+        Dishes.setCurrentDish(Dishes.getDish(dishFinderFragment.getViewPager().getCurrentItem()));
         openFragment(new ValidateDishFragment());
+    }
+
+    public void validateDish(View v){
+        Dishes.eatDish();
+        openFragment(new HomeFragment());
     }
 }

@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.adapters.DishFinderSlidePagerAdapter;
@@ -37,4 +38,7 @@ public class DishFinderFragment extends Fragment {
         return view;
     }
 
+    public ViewPager getViewPager(){
+        return pager;
+    }
 }
