@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DishesFragment">
 
-    <TextView
+    <SearchView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_dishes" />
+        android:layout_height="wrap_content"
+        android:inputType="text" />
 
-</FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80sp"
+        android:layout_marginLeft="10sp"
+        android:textAllCaps="false"
+        android:text="@string/manage_guests"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="80sp"
+        android:layout_marginRight="70sp"
+        android:textAllCaps="false"
+        android:text="@string/create_recipe"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mes favoris"
+        android:layout_marginTop="170sp"
+        android:layout_marginLeft="20sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suggestions"
+        android:layout_marginTop="400sp"
+        android:layout_marginLeft="20sp"
+        />
+
+    <TextView
+        android:id="@+id/labeInfo"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
+
+
+
+</RelativeLayout>
