@@ -5,6 +5,9 @@
     <string name="title_dishes">Dishes</string>
     <string name="manage_guests">Ajouter des convives</string>
     <string name="create_recipe">Ajouter une recette</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
+    <string name="take_pic">Take pic</string>
     <string name="title_provisions">Provisions</string>
     <string name="title_shop">Shopping List</string>
     <string name="validation_fridge"> Add </string>
