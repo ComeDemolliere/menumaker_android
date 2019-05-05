@@ -104,10 +104,6 @@ public class Dishes {
 
     public static int size() { return dishes.size();}
 
-    public static Dish getDish(int pos) {
-            return dishes.get(pos);
-    }
-
     public static void eatDish(){
         if(currentDish != null){
             dishesEaten.add(currentDish);
@@ -119,6 +115,6 @@ public class Dishes {
     }
 
     public static void setCurrentDish(Dish d){
-        currentDish = d;
+        currentDish = new Dish(d);
     }
 }
