@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragments.DishFinderFragment">
 
-    <android.support.design.widget.TabLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal"
+        android:id="@+id/toolbar">
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/provisions"
+        <Button
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bo" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="end"
+            android:text="Valider le plat"
+            android:onClick="validateDish"/>
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/shopping_list"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="bo" />
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
-    </android.support.design.widget.TabLayout>
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/left_arrow"></ImageView>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="60dp"
-        android:text="bo" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="261dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
-        android:text="bo" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+
+        <android.support.v4.view.ViewPager
+
+            android:id="@+id/viewpager1"
+
+            android:layout_width="fill_parent"
+
+            android:layout_height="fill_parent" />
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
