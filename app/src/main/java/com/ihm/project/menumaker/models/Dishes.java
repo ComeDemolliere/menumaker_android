@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Dishes {
     private static List<Dish> dishes = new ArrayList<>();
+    private static List<Dish> favoriteDishes = new ArrayList<>();
+    private static List<Dish> suggestedDishes = new ArrayList<>();
     private static List<Dish> dishesEaten = new ArrayList<>();
     private static int pos = 0;
     private static Dish currentDish;
@@ -88,6 +90,20 @@ public class Dishes {
         dishesEaten.add(new Dish("risotto", R.drawable.risotto, "blabla"));
         dishesEaten.add(new Dish("risotto", R.drawable.risotto, "blabla"));
         dishesEaten.add(new Dish("risotto", R.drawable.risotto, "blabla"));
+
+
+        //Favorite dishes
+        favoriteDishes.clear();
+        favoriteDishes.add(new Dish("carbonara", R.drawable.carbonara, "blabla"));
+        favoriteDishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
+        favoriteDishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
+        favoriteDishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
+
+        //Suggested dishes
+        suggestedDishes.clear();
+        suggestedDishes.add(new Dish("carbonara", R.drawable.carbonara, "blabla"));
+        suggestedDishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
+        suggestedDishes.add(new Dish("risotto", R.drawable.risotto, "blabla"));
     }
 
     public static void add(Dish dish) {
@@ -101,6 +117,9 @@ public class Dishes {
     public static List<Dish> getDishesEaten() {
         return dishesEaten;
     }
+
+    public static List<Dish> getFavoriteDishes() { return favoriteDishes; }
+    public static List<Dish> getSuggestedDishes() {return suggestedDishes; }
 
     public static int size() { return dishes.size();}
 
