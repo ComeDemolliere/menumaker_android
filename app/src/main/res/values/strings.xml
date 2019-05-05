@@ -5,4 +5,8 @@
     <string name="title_dishes">Dishes</string>
     <string name="manage_guests">Ajouter des convives</string>
     <string name="create_recipe">Ajouter une recette</string>
+    <string name="title_provisions">Provisions</string>
+    <string name="title_shop">Shopping List</string>
+    <string name="validation_fridge"> Add </string>
+    <string name="removing_fridge" >Remove</string>
 </resources>

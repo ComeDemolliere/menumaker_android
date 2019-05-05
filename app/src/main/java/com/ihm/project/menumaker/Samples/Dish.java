@@ -13,10 +13,19 @@ public class Dish {
     public Dish(String name, int image, String receipe) {
         this.name = name;
         this.image = image;
-        //this.date = date;
         this.receipe = receipe;
         //this.ingredients = ingredients;
     }
+
+    public Dish(Dish dish){
+        this.name = dish.getName();
+        this.image = dish.getImage();
+        this.date = dish.getDate();
+        this.receipe = dish.getReceipe();
+        this.ingredients = dish.getIngredients();
+    }
+
+    public void setDate(Date date) { this.date = date; }
 
     public String getName() {
         return name;

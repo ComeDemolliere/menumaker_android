@@ -1,8 +1,11 @@
 package com.ihm.project.menumaker;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +18,12 @@ import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.utils.CalendarManager;
 
 public class MainActivity extends AppCompatActivity {
 
     private DishFinderFragment dishFinderFragment;
+    private CalendarManager calendarManager;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -42,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dishes.init();
+        //Request permissions
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 1);
+
+        calendarManager = new CalendarManager(this);
+        calendarManager.init();
+
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -56,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Dishes.init();
     }
 
     private void openFragment(Fragment fragment) {
@@ -82,12 +94,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chooseDish(View v){
-        Dishes.setCurrentDish(Dishes.getDish(dishFinderFragment.getViewPager().getCurrentItem()));
+        Dishes.setCurrentDish(Dishes.getDishes().get(dishFinderFragment.getViewPager().getCurrentItem()));
         openFragment(new ValidateDishFragment());
     }
 
     public void validateDish(View v){
+        addEventToCalendar();
         Dishes.eatDish();
         openFragment(new HomeFragment());
+    }
+
+    private void addEventToCalendar(){
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            System.out.println("Holidays in United States");
+            return;
+        } else calendarManager.insert(Dishes.getCurrentDish());
     }
 }
