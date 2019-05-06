@@ -22,4 +22,6 @@ public class DishesFragment extends Fragment {
         return inflater.inflate(R.layout.dishes_fragment, container, false);
     }
 
+
+
 }

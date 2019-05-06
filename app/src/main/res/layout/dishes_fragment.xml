@@ -11,6 +11,7 @@
         android:inputType="text" />
 
     <Button
+        android:id="@+id/addGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,6 +19,7 @@
         android:layout_marginLeft="10sp"
         android:textAllCaps="false"
         android:text="@string/manage_guests"
+        android:onClick="openAddGuestActivity"
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button

@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.ihm.project.menumaker.R;
-import com.ihm.project.menumaker.adapters.DishesAdapter;
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.adapters.DishesAdapter;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class HomeFragment extends Fragment implements IListenItem{
