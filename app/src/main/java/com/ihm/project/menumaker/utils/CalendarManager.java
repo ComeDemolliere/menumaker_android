@@ -34,7 +34,6 @@ public class CalendarManager {
             do {
                 calName = managedCursor.getString(nameCol);
                 this.id = managedCursor.getString(idCol);
-                System.out.println(calName + " " + id);
             } while(managedCursor.moveToNext());
             managedCursor.close();
         }

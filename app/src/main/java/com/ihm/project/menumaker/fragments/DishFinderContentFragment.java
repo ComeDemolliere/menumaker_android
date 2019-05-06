@@ -42,7 +42,7 @@ public class DishFinderContentFragment extends Fragment {
 
         if(getArguments() != null){
             Dish dish = Dishes.getDishes().get(getArguments().getInt("EXTRA_DISH_POS"));
-            image.setImageResource(dish.getImage());
+            image.setImageResource(dish.getImageWithContext(getContext()));
             name.setText(dish.getName());
             recipe.setText(dish.getReceipe());
         }

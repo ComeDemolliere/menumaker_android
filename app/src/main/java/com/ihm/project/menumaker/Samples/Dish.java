@@ -1,16 +1,24 @@
 package com.ihm.project.menumaker.Samples;
 
+import android.content.Context;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 import java.util.List;
 
 public class Dish {
     private String name;
-    private int image;
+
+    private String image;
+
     private Date date;
+
     private String receipe;
+
     private List ingredients;
 
-    public Dish(String name, int image, String receipe) {
+    public Dish(String name, String image, String receipe) {
         this.name = name;
         this.image = image;
         this.receipe = receipe;
@@ -31,8 +39,10 @@ public class Dish {
         return name;
     }
 
-    public int getImage() {
-        return image;
+    public String getImage() {return this.image;}
+
+    public int getImageWithContext(Context context) {
+        return context.getResources().getIdentifier(image, "drawable",  context.getPackageName());
     }
 
     public Date getDate() {
