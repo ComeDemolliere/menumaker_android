@@ -46,7 +46,6 @@ public class FridgeProvisions extends Fragment implements IListenItem2 {
     public void onClickItem(Ingredient ingredient) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(ingredient.getName());
-        //builder.setMessage(dish.getReceipe());
         builder.show();
     }
 }

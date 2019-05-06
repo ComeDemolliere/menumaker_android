@@ -18,6 +18,7 @@ import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.models.Ingredients;
 import com.ihm.project.menumaker.utils.CalendarManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //init
         Dishes.init();
+        Ingredients.init();
+
         //Request permissions
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 1);
