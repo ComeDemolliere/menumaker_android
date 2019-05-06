@@ -1,0 +1,60 @@
+package com.ihm.project.menumaker.adapters;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.ihm.project.menumaker.R;
+import com.ihm.project.menumaker.Samples.Ingredient;
+import com.ihm.project.menumaker.fragments.IListenItem2;
+
+import java.util.List;
+
+public class IngredientsListAdapter extends BaseAdapter {
+    private List<Ingredient> ingredients;
+    private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
+    private IListenItem2 listViewListen2;
+
+    public IngredientsListAdapter(Context context, List<Ingredient> listView){
+        this.ingredients = listView;
+        mInflater = LayoutInflater.from(context);
+    }
+
+
+    @Override
+    public int getCount() {
+        return ingredients.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return ingredients.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.ingredient_layout, parent, false);
+
+        TextView name = layoutItem.findViewById(R.id.name_ingredient);
+
+        name.setText(ingredients.get(position).getName());
+
+        layoutItem.setTag(position);
+
+        return layoutItem;
+    }
+
+    public void addListener(IListenItem2 itemToListen) {
+        listViewListen2 = itemToListen;
+    }
+}

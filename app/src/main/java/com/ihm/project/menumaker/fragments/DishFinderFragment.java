@@ -1,24 +1,24 @@
 package com.ihm.project.menumaker.fragments;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.ihm.project.menumaker.R;
-import com.ihm.project.menumaker.Samples.Dish;
-import com.ihm.project.menumaker.adapters.DishesAdapter;
-import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.adapters.DishFinderSlidePagerAdapter;
 
 public class DishFinderFragment extends Fragment {
+
+    private FragmentActivity myContext;
+    private DishFinderSlidePagerAdapter dishAdapter;
+    private ViewPager pager;
 
     public static DishFinderFragment newInstance() {
         return new DishFinderFragment();
@@ -29,18 +29,16 @@ public class DishFinderFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.dish_finder_fragment, container, false);
 
-        Dish currentDish = Dishes.getRandomDish();
-
         RelativeLayout layoutItem = (RelativeLayout) view;
 
-        ImageView image = layoutItem.findViewById(R.id.dishImage);
-        TextView name = layoutItem.findViewById(R.id.dishName);
+        dishAdapter = new DishFinderSlidePagerAdapter(getChildFragmentManager());
+        pager = layoutItem.findViewById(R.id.viewpager);
+        pager.setAdapter(dishAdapter);
 
-        Dish dish = Dishes.getRandomDish();
-
-        image.setImageResource(dish.getImage());
-        name.setText(dish.getName());
         return view;
     }
 
+    public ViewPager getViewPager(){
+        return pager;
+    }
 }
