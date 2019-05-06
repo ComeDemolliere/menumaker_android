@@ -17,8 +17,8 @@ public class Ingredients {
     //Just initialize all the ingredients we know
     public static void init(){
         allIngredients.clear();
-        allIngredients.put(new Ingredient("tomato", R.drawable.tomato, IngredientsType.COUNTABLE), 2);
-
+        allIngredients.put(new Ingredient("Tomate", IngredientsType.COUNTABLE), 2);
+        allIngredients.put(new Ingredient("Fromage de chèvre", IngredientsType.COUNTABLE), 2);
     }
 
     //All the ingredients list

@@ -5,12 +5,10 @@ import com.ihm.project.menumaker.utils.IngredientsType;
 public class Ingredient {
 
     private String name;
-    private int image;
     private IngredientsType ingredientsType;
 
 
-    public Ingredient(String name, int image, IngredientsType ingredientsType){
-        this.image=image;
+    public Ingredient(String name, IngredientsType ingredientsType){
         this.name=name;
         this.ingredientsType=ingredientsType;
     }
@@ -21,10 +19,6 @@ public class Ingredient {
 
     public IngredientsType getIngredientsType(){
         return this.ingredientsType;
-    }
-
-    public int getImage() {
-        return image;
     }
 
     //To show an ingredient in function of its type
