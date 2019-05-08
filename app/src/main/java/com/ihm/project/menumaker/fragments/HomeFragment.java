@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.DishesAdapter;
+import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class HomeFragment extends Fragment implements IListenItem{
@@ -44,7 +45,9 @@ public class HomeFragment extends Fragment implements IListenItem{
     public void onClickItem(Dish dish) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(dish.getName());
+        IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
         builder.setMessage(dish.getReceipe());
+        builder.setPositiveButton("Voir plus", null);
         builder.show();
     }
 }

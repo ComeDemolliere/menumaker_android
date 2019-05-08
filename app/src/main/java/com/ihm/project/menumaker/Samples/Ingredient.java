@@ -6,7 +6,7 @@ public class Ingredient {
 
     private String name;
     private IngredientsType ingredientsType;
-    private int quantity;
+    private float quantity;
 
 
     public Ingredient(String name, IngredientsType ingredientsType, int quantity){
@@ -23,7 +23,7 @@ public class Ingredient {
         return this.ingredientsType;
     }
 
-    public int getQuantity(){
+    public float getQuantity(){
         return this.quantity;
     }
 

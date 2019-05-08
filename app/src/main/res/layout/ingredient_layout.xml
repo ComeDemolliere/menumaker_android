@@ -11,16 +11,16 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
         android:layout_centerVertical="true"
-        android:layout_marginStart="60sp"
+        android:layout_marginStart="30sp"
         android:text="name"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/quantity_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="200sp"
+        android:layout_marginStart="230sp"
         android:text="quantity"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 </RelativeLayout>

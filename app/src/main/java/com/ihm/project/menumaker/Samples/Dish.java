@@ -16,13 +16,13 @@ public class Dish {
 
     private String receipe;
 
-    private List ingredients;
+    private List<Ingredient> ingredients;
 
-    public Dish(String name, String image, String receipe) {
+    public Dish(String name, String image, String receipe, List<Ingredient> ingredients) {
         this.name = name;
         this.image = image;
         this.receipe = receipe;
-        //this.ingredients = ingredients;
+        this.ingredients = ingredients;
     }
 
     public Dish(Dish dish){
@@ -53,7 +53,7 @@ public class Dish {
         return receipe;
     }
 
-    public List getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 }
