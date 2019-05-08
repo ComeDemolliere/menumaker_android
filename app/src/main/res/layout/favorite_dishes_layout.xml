@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="128sp"
+    android:layout_height="158sp"
+    android:orientation="horizontal"
+    android:padding="6dip">
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="150sp"
-        android:layout_height="200sp" />
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="128sp" />
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_marginTop="128sp"
+        android:text="plat"/>
 
 </RelativeLayout>

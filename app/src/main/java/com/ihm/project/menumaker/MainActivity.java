@@ -38,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new FridgeFragment());
                     return true;
                 case R.id.navigation_dishes:
-                    openFragment(new DishesFragment());
+                    openDishFragment(new DishesFragment());
                     return true;
             }
             return false;
         }
     };
+
+    private void openDishFragment(DishesFragment dishesFragment) {
+        openFragment(dishesFragment);
+        dishesFragment.setActivity(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    private void openFragment(Fragment fragment) {
+    public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();
