@@ -17,6 +17,8 @@ import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.fragments.IngredientAddingProvision;
+import com.ihm.project.menumaker.fragments.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.Ingredients;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private DishFinderFragment dishFinderFragment;
     private CreateGuestFragment createGuestFrament;
     private CalendarManager calendarManager;
+    private IngredientAddingProvision ingredientAddingProvision;
+    private IngredientAddingToBuyList ingredientAddingToBuyList;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -76,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         dishFinderFragment = new DishFinderFragment();
         createGuestFrament = new CreateGuestFragment();
+        ingredientAddingProvision = new IngredientAddingProvision();
+        ingredientAddingToBuyList= new IngredientAddingToBuyList();
     }
 
     @Override
@@ -126,5 +132,23 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Holidays in United States");
             return;
         } else calendarManager.insert(Dishes.getCurrentDish());
+    }
+
+    public void createIngredient(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, ingredientAddingProvision);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void createIngredientToBuyList(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, ingredientAddingToBuyList);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void addIngredient(){
+        onBackPressed();
     }
 }
