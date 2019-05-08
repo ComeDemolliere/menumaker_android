@@ -1,0 +1,16 @@
+[{
+  "name": "Pâte",
+  "quantity": 1000,
+  "ingredientsType": "POUNDABLE"
+},
+  {
+    "name": "Lait",
+    "quantity": 6,
+    "ingredientsType": "LIQUIDE"
+  },
+  {
+    "name": "Steack",
+    "quantity": 3,
+    "ingredientsType": "COUNTABLE"
+  }
+]

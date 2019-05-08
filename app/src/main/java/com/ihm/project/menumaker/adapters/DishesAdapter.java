@@ -52,7 +52,9 @@ public class DishesAdapter extends BaseAdapter {
 
 
         name.setText(listView.get(position).getName());
-        image.setImageResource(listView.get(position).getImage());
+        image.setImageResource(listView.get(position).getImageWithContext(mInflater.getContext()));
+
+
         Date dishDate = listView.get(position).getDate();
         if(dishDate != null)
             date.setText(dishDate.getDate() + "/" + dishDate.getMonth() + "/" + (dishDate.getYear() + 1900));
