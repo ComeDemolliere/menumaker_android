@@ -5,16 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ihm.project.menumaker.R;
-import com.ihm.project.menumaker.adapters.FavoriteAndSuggestedDishesAdapter;
+import com.ihm.project.menumaker.adapters.FavAndSugDishRVAdapter;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class DishesFragment extends Fragment {
-    private FavoriteAndSuggestedDishesAdapter favoriteDishesAdapter;
+    private FavAndSugDishRVAdapter favAdapter;
     private Activity activity;
 
     public static DishesFragment newInstance() {
@@ -30,8 +32,16 @@ public class DishesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.dishes_fragment, container, false);
 
-        favoriteDishesAdapter = new FavoriteAndSuggestedDishesAdapter(getContext(), Dishes.getFavoriteDishes());
+        RecyclerView favList = view.findViewById(R.id.favList);
+        favAdapter = new FavAndSugDishRVAdapter(getContext(), Dishes.getDishes(), getFragmentManager().beginTransaction());
 
+        //orientation
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        //set  my recyclerView
+        favList.setLayoutManager(llm);
+        favList.setAdapter(favAdapter);
         return  view;
     }
 

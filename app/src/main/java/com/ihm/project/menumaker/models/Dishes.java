@@ -21,6 +21,7 @@ public class Dishes {
         currentDish = null;
         JsonManager jsonManager = new JsonManager(context, "dish.json");
         dishes = jsonManager.getAllDishesFromJSON();
+        favoriteDishes = dishes;
     }
 
     public static void add(Dish dish) {
