@@ -1,0 +1,11 @@
+[{
+  "name": "Carotte",
+  "quantity": 3,
+  "ingredientsType": "COUNTABLE"
+},
+  {
+    "name": "Riz",
+    "quantity": 200,
+    "ingredientsType": "POUNDABLE"
+  }
+]

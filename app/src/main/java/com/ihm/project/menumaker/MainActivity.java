@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //init
         Dishes.init(this.getBaseContext());
-        Ingredients.init();
+        Ingredients.init(this.getBaseContext());
 
         //Request permissions
         ActivityCompat.requestPermissions(this,

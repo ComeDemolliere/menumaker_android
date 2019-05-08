@@ -46,8 +46,12 @@ public class IngredientsListAdapter extends BaseAdapter {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.ingredient_layout, parent, false);
 
         TextView name = layoutItem.findViewById(R.id.name_ingredient);
+        TextView quantity = layoutItem.findViewById(R.id.quantity_ingredient);
 
-        name.setText(ingredients.get(position).getName());
+        Ingredient ingredient = ingredients.get(position);
+
+        name.setText(ingredient.getName());
+        quantity.setText(ingredient.getQuantity() + " " + ingredient.show());
 
         layoutItem.setTag(position);
 
