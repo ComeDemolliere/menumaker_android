@@ -17,7 +17,7 @@ public class CreateRecipeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.dish_finder_fragment, container, false);
+        final View view = inflater.inflate(R.layout.create_recipe_fragment, container, false);
         return view;
     }
 }
