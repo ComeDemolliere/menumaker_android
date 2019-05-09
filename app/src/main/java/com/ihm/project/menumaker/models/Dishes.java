@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Dishes {
     private static List<Dish> dishes = new ArrayList<>();
+    private static List<Dish> favoriteDishes = new ArrayList<>();
+    private static List<Dish> suggestedDishes = new ArrayList<>();
     private static List<Dish> dishesEaten = new ArrayList<>();
     private static int pos = 0;
     private static Dish currentDish;
@@ -33,12 +35,25 @@ public class Dishes {
         return dishesEaten;
     }
 
+    public static List<Dish> getFavoriteDishes() { return favoriteDishes; }
+    public static List<Dish> getSuggestedDishes() {return suggestedDishes; }
+
     public static int size() { return dishes.size();}
 
     public static void eatDish(){
         if(currentDish != null){
             dishesEaten.add(currentDish);
         }
+    }
+
+    public static void addDishToFav(Dish d) {
+        favoriteDishes.add(d);
+        d.setFav(true);
+    }
+
+    public static void rmDishToFav(Dish d) {
+        d.setFav(false);
+        favoriteDishes.remove(d);
     }
 
     public static Dish getCurrentDish(){

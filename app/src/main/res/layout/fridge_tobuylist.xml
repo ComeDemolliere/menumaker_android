@@ -22,7 +22,8 @@
         android:layout_marginStart="261dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/validation_fridge" />
+        android:text="@string/validation_fridge"
+        android:onClick="createIngredientToBuyList"/>
 
     <ListView
         android:id="@+id/tobuylist"

@@ -19,6 +19,8 @@ import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
 import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.fragments.IngredientAddingProvision;
+import com.ihm.project.menumaker.fragments.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.Ingredients;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private DishFinderFragment dishFinderFragment;
     private ManageGuestFragment manageGuestFragment;
     private CalendarManager calendarManager;
+    private IngredientAddingProvision ingredientAddingProvision;
+    private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
     private ContactsFragment contactsFragment;
 
@@ -45,19 +49,24 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new FridgeFragment());
                     return true;
                 case R.id.navigation_dishes:
-                    openFragment(new DishesFragment());
+                    openDishFragment(new DishesFragment());
                     return true;
             }
             return false;
         }
     };
 
+    private void openDishFragment(DishesFragment dishesFragment) {
+        openFragment(dishesFragment);
+        dishesFragment.setActivity(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //init
         Dishes.init(this.getBaseContext());
-        Ingredients.init();
+        Ingredients.init(this.getBaseContext());
 
         //Request permissions
         ActivityCompat.requestPermissions(this,
@@ -75,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
 
         dishFinderFragment = new DishFinderFragment();
+        createGuestFrament = new CreateGuestFragment();
+        ingredientAddingProvision = new IngredientAddingProvision();
+        ingredientAddingToBuyList= new IngredientAddingToBuyList();
         manageGuestFragment = new ManageGuestFragment();
         createGuestFragment = new CreateGuestFragment();
         contactsFragment = new ContactsFragment();
@@ -85,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    private void openFragment(Fragment fragment) {
+    public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();
@@ -139,5 +151,23 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Holidays in United States");
             return;
         } else calendarManager.insert(Dishes.getCurrentDish());
+    }
+
+    public void createIngredient(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, ingredientAddingProvision);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void createIngredientToBuyList(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, ingredientAddingToBuyList);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void addIngredient(){
+        onBackPressed();
     }
 }

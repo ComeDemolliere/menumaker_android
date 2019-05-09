@@ -6,11 +6,13 @@ public class Ingredient {
 
     private String name;
     private IngredientsType ingredientsType;
+    private float quantity;
 
 
-    public Ingredient(String name, IngredientsType ingredientsType){
+    public Ingredient(String name, IngredientsType ingredientsType, int quantity){
         this.name=name;
         this.ingredientsType=ingredientsType;
+        this.quantity = quantity;
     }
 
     public String getName(){
@@ -21,12 +23,16 @@ public class Ingredient {
         return this.ingredientsType;
     }
 
+    public float getQuantity(){
+        return this.quantity;
+    }
+
     //To show an ingredient in function of its type
     public String show(){
 
         if(this.ingredientsType== IngredientsType.POUNDABLE) return  "g";
 
-        if(this.ingredientsType== IngredientsType.LIQUIDE) return  "l";
+        if(this.ingredientsType== IngredientsType.LIQUIDE) return  "L";
 
         return " ";
     }

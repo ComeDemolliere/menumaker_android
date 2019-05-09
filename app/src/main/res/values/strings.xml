@@ -12,4 +12,5 @@
     <string name="title_shop">Shopping List</string>
     <string name="validation_fridge"> Add </string>
     <string name="removing_fridge" >Remove</string>
+    <string name="ingredients_type"> L, g or unities</string>
 </resources>

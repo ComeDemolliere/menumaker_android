@@ -16,13 +16,15 @@ public class Dish {
 
     private String receipe;
 
-    private List ingredients;
+    private List<Ingredient> ingredients;
 
-    public Dish(String name, String image, String receipe) {
+    private boolean fav = false;
+
+    public Dish(String name, String image, String receipe, List<Ingredient> ingredients) {
         this.name = name;
         this.image = image;
         this.receipe = receipe;
-        //this.ingredients = ingredients;
+        this.ingredients = ingredients;
     }
 
     public Dish(Dish dish){
@@ -45,6 +47,10 @@ public class Dish {
         return context.getResources().getIdentifier(image, "drawable",  context.getPackageName());
     }
 
+    public boolean getFav(){ return this.fav;}
+
+    public void setFav(boolean fav) { this.fav = fav;}
+
     public Date getDate() {
         return date;
     }
@@ -53,7 +59,13 @@ public class Dish {
         return receipe;
     }
 
-    public List getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Dish d = (Dish) o;
+        return d.getName().equals(name);
     }
 }

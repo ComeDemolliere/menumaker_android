@@ -30,7 +30,7 @@ public class FridgeProvisions extends Fragment implements IListenItem2 {
 
         RelativeLayout layoutItem = (RelativeLayout) view;
 
-        IngredientsListAdapter fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getAllIngredients());
+        IngredientsListAdapter fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getProvisions());
 
         ListView provisions = layoutItem.findViewById(R.id.provisions);
 

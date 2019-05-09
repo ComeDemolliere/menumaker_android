@@ -1,21 +1,30 @@
 package com.ihm.project.menumaker.fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class DishFinderContentFragment extends Fragment {
+
+    private Dish dish;
 
     public static DishFinderContentFragment newInstance(int pos) {
         DishFinderContentFragment f = new DishFinderContentFragment();
@@ -39,14 +48,40 @@ public class DishFinderContentFragment extends Fragment {
         ImageView image = layoutItem.findViewById(R.id.dishImage);
         TextView name = layoutItem.findViewById(R.id.dishName);
         TextView recipe = layoutItem.findViewById(R.id.dishRecipe);
+        Switch swi = layoutItem.findViewById(R.id.switch1);
+
+        Button button = layoutItem.findViewById(R.id.button2);
 
         if(getArguments() != null){
-            Dish dish = Dishes.getDishes().get(getArguments().getInt("EXTRA_DISH_POS"));
+            dish = Dishes.getDishes().get(getArguments().getInt("EXTRA_DISH_POS"));
             image.setImageResource(dish.getImageWithContext(getContext()));
             name.setText(dish.getName());
+            swi.setChecked(dish.getFav());
             recipe.setText(dish.getReceipe());
         }
 
+        swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) Dishes.addDishToFav(dish);
+                else Dishes.rmDishToFav(dish);
+            }
+        });
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) { createDialog(); }
+        });
+
         return view;
+    }
+
+    private void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Ingrédients");
+        IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
+        builder.setAdapter(adapter, null);
+        builder.setPositiveButton("Retour", null);
+        builder.show();
     }
 }
