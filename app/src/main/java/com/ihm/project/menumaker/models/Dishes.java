@@ -3,6 +3,7 @@ package com.ihm.project.menumaker.models;
 import android.content.Context;
 
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.Samples.Ingredient;
 import com.ihm.project.menumaker.utils.JsonManager;
 
 import java.util.ArrayList;
@@ -45,6 +46,17 @@ public class Dishes {
             dishesEaten.add(currentDish);
             if(!suggestedDishes.contains(currentDish))
                 suggestedDishes.add(currentDish);
+
+            for (Ingredient i: currentDish.getIngredients()) {
+                if(Ingredients.getProvisions().contains(i)){
+                    Ingredient tmp = Ingredients.rmIngToProvisions(i);
+                    if(tmp!=null){
+                        Ingredients.addIngToBuyList(tmp);
+                    }
+                }else {
+                    Ingredients.addIngToBuyList(i);
+                }
+            }
         }
     }
 

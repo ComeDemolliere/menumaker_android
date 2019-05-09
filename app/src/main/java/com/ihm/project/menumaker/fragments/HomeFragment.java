@@ -1,6 +1,7 @@
 package com.ihm.project.menumaker.fragments;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -43,11 +44,25 @@ public class HomeFragment extends Fragment implements IListenItem{
 
     @Override
     public void onClickItem(Dish dish) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(dish.getName());
-        IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
-        builder.setMessage(dish.getReceipe());
-        builder.setPositiveButton("Voir plus", null);
-        builder.show();
+        AlertDialog.Builder builderR = new AlertDialog.Builder(getContext());
+        builderR.setTitle(dish.getName());
+        builderR.setMessage(dish.getReceipe());
+        builderR.setPositiveButton("Ingrédients", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(dish.getName());
+                IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
+                builder.setAdapter(adapter, null);
+                builder.setPositiveButton("Recette", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        builderR.show();
+                    }
+                });
+                builder.show();
+            }
+        });
+        builderR.show();
     }
 }

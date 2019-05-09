@@ -9,7 +9,7 @@ public class Ingredient {
     private float quantity;
 
 
-    public Ingredient(String name, IngredientsType ingredientsType, int quantity){
+    public Ingredient(String name, IngredientsType ingredientsType, float quantity){
         this.name=name;
         this.ingredientsType=ingredientsType;
         this.quantity = quantity;
@@ -37,4 +37,13 @@ public class Ingredient {
         return " ";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Ingredient ingredient = (Ingredient) obj;
+        return name.toLowerCase().equals(ingredient.getName().toLowerCase());
+    }
+
+    public void setQuantity(float quantity){
+        this.quantity = quantity;
+    }
 }
