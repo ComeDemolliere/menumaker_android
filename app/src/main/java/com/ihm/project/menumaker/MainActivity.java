@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ihm.project.menumaker.fragments.CreateRecipeFragment;
 import com.ihm.project.menumaker.fragments.guests.ContactsFragment;
 import com.ihm.project.menumaker.fragments.guests.CreateGuestFragment;
 import com.ihm.project.menumaker.fragments.guests.ManageGuestFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
     private ContactsFragment contactsFragment;
+    private CreateRecipeFragment createRecipeFragment;
 
     String currentPhotoPath;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         manageGuestFragment = new ManageGuestFragment();
         createGuestFragment = new CreateGuestFragment();
         contactsFragment = new ContactsFragment();
+        createRecipeFragment = new CreateRecipeFragment();
     }
 
     @Override
@@ -145,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.main_container, dishFinderFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void openCreateRecipe(View v) {
+        this.openFragment(createRecipeFragment);
     }
 
     public void onBackPressed(View v){

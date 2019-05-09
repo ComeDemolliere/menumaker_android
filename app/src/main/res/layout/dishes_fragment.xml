@@ -21,7 +21,8 @@
         android:layout_marginLeft="20sp"
         android:layout_toRightOf="@+id/addGuest"
         android:text="@string/create_recipe"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:onClick="openCreateRecipe"/>
 
     <Button
         android:id="@+id/addGuest"
