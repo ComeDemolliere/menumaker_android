@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.ihm.project.menumaker.fragments.CreateGuestFragment;
+import com.ihm.project.menumaker.fragments.guests.ContactsFragment;
+import com.ihm.project.menumaker.fragments.guests.CreateGuestFragment;
+import com.ihm.project.menumaker.fragments.guests.ManageGuestFragment;
 import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
@@ -29,10 +31,13 @@ import com.ihm.project.menumaker.utils.CalendarManager;
 public class MainActivity extends AppCompatActivity {
 
     private DishFinderFragment dishFinderFragment;
-    private CreateGuestFragment createGuestFrament;
+    private ManageGuestFragment manageGuestFragment;
     private CalendarManager calendarManager;
     private IngredientAddingProvision ingredientAddingProvision;
     private IngredientAddingToBuyList ingredientAddingToBuyList;
+    private CreateGuestFragment createGuestFragment;
+    private ContactsFragment contactsFragment;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -83,9 +88,12 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
 
         dishFinderFragment = new DishFinderFragment();
-        createGuestFrament = new CreateGuestFragment();
+        manageGuestFragment = new ManageGuestFragment();
         ingredientAddingProvision = new IngredientAddingProvision();
         ingredientAddingToBuyList= new IngredientAddingToBuyList();
+        manageGuestFragment = new ManageGuestFragment();
+        createGuestFragment = new CreateGuestFragment();
+        contactsFragment = new ContactsFragment();
     }
 
     @Override
@@ -106,8 +114,19 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void openCreateGuestWithoutContact(View v) {
+       this.openFragment(createGuestFragment);
+    }
+    public void openCreateGuestWithContact(View v) {
+       this.openFragment(contactsFragment);
+    }
+    public void openCreateGuestWithContactSelected(View v, String contactName) {
+       this.openFragment(createGuestFragment);
+       createGuestFragment.setName(contactName);
+    }
+
     public void openAddGuestActivity(View v) {
-        this.openFragment(createGuestFrament);
+        this.openFragment(manageGuestFragment);
     }
 
     public void openDishFinder (View v) {

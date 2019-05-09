@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.guests;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
@@ -16,11 +16,14 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -70,18 +73,35 @@ public class ContactsFragment extends Fragment {
                 .allFields()
                 .buildList();
 
-        Log.d("bo", contactList.size() + "");
-
-        ContactsAdapter adapter = new ContactsAdapter(getContext(), contactList);
+        ContactsAdapter adapter = new ContactsAdapter(getContext(), contactList, getActivity());
 
         contactsList.setAdapter(adapter);
+        EditText editText = getView().findViewById(R.id.searchContact);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.contacts_list,
+        View v = inflater.inflate(R.layout.contacts_list,
                 container, false);
+
+        return v;
     }
 
     @Override
