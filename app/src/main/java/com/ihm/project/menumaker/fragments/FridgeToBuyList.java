@@ -25,7 +25,7 @@ public class FridgeToBuyList extends Fragment implements IListenItem2 {
 
         RelativeLayout layoutItem = (RelativeLayout) view;
 
-        IngredientsListAdapter fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getAllIngredients());
+        IngredientsListAdapter fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getToBuyList());
 
         ListView toBuyList = layoutItem.findViewById(R.id.tobuylist);
 

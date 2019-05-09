@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_fridge"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/refrigerator"
         android:title="@string/title_fridge" />
 
     <item
@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_dishes"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/dish"
         android:title="@string/title_dishes" />
 
 </menu>

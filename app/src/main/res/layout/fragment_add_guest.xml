@@ -1,48 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/deleteGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="76dp"
+        android:onClick="openCreateGuestWithContact"
+        android:text="Ajouter un convive depuis les contacts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Gérer vos convives"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/guestsListView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:onClick="openCreateGuestWithoutContact"
+        android:text="Ajouter un convive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/searchGuest"
         android:layout_width="395dp"
-        android:layout_height="715dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:hint="Chercher un convive"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+    </EditText>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gérer vos convives"
-            android:textSize="36sp"
-            android:textStyle="bold" />
-
-        <ListView
-            android:id="@+id/guestsListView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginTop="150sp"
-            android:scrollbars="vertical" />
-
-        <Button
-            android:id="@+id/buttonAddGuest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginTop="70sp"
-            android:text="Ajouter un convive" />
-        <Button
-            android:id="@+id/deleteGuest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="250sp"
-            android:layout_marginTop="70sp"
-            android:text="Ajouter un convive depuis les contacts" />
-
-
-
-
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

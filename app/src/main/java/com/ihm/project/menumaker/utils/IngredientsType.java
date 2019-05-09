@@ -4,5 +4,5 @@ package com.ihm.project.menumaker.utils;
 public enum IngredientsType {
     COUNTABLE,
     POUNDABLE,
-    LIQUIDE;
+    LIQUIDE,
 }

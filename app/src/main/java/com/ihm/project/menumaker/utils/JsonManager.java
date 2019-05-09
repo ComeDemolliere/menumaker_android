@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.Samples.Ingredient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +37,21 @@ public class JsonManager {
             e.printStackTrace();
         }
         return dishes;
+    }
+
+    public ArrayList<Ingredient> getAllIngredientsFromJson() {
+        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(getJSONFromAsset(context, this.file));
+            Type listType = new TypeToken<ArrayList<Ingredient>>(){}.getType();
+
+            ingredients = new GsonBuilder().create().fromJson(jsonArray.toString(), listType);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return ingredients;
     }
 
     private  String getJSONFromAsset(Context context, String file) {

@@ -1,64 +1,38 @@
 package com.ihm.project.menumaker.models;
 
-import com.ihm.project.menumaker.R;
+import android.content.Context;
+
 import com.ihm.project.menumaker.Samples.Ingredient;
-import com.ihm.project.menumaker.utils.IngredientsType;
+import com.ihm.project.menumaker.utils.JsonManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class Ingredients {
-    private static HashMap<Ingredient, Integer> allIngredients = new HashMap<>();
-    private static  HashMap<Ingredient, Integer> provisions = new HashMap<>();
-    private static  HashMap<Ingredient, Integer> toBuyList = new HashMap<>();
+    private static  List<Ingredient> provisions = new ArrayList<>();
+    private static  List<Ingredient> toBuyList = new ArrayList<>();
 
     //Just initialize all the ingredients we know
-    public static void init(){
-        allIngredients.clear();
-        allIngredients.put(new Ingredient("Tomate", IngredientsType.COUNTABLE), 2);
-        allIngredients.put(new Ingredient("Fromage de chèvre", IngredientsType.COUNTABLE), 2);
-    }
+    public static void init(Context context){
+        provisions.clear();
+        toBuyList.clear();
 
-    //All the ingredients list
-    public static List<Ingredient> getAllIngredients(){
-        List<Ingredient> allIngredients2= new ArrayList<>();
-        allIngredients2.addAll(allIngredients.keySet());
-        return allIngredients2;
+        //init list
+        JsonManager jsonManager = new JsonManager(context, "ingredientToBuy.json");
+        toBuyList = jsonManager.getAllIngredientsFromJson();
+        jsonManager = new JsonManager(context, "provision.json");
+        provisions = jsonManager.getAllIngredientsFromJson();
+
     }
 
     //All the fridge's ingredients
-    public static Set<Ingredient> getProvisions(){
-        return provisions.keySet();
+    public static List<Ingredient> getProvisions(){
+        return provisions;
     }
 
     //As his name said: to buy list :)
-    public static Set<Ingredient> getToBuyList(){
-        return toBuyList.keySet();
+    public static List<Ingredient> getToBuyList(){
+        return toBuyList;
     }
-
-    public static int getQuantityByNameinAllIngredients(String name){
-        Set<Ingredient> allIngredientsName = allIngredients.keySet();
-
-        for ( Ingredient in: allIngredientsName){
-            if(in.getName().equals(name)) return allIngredients.get(in);
-
-
-        }
-        return 0;
-    }
-
-    public static Ingredient getIngredientInAllIngredients(String name){
-        Set<Ingredient> allIngredientsName = allIngredients.keySet();
-
-        for ( Ingredient in: allIngredientsName){
-            if(in.getName().equals(name)) return in;
-
-
-        }
-        return null;
-    }
-
 
 }
