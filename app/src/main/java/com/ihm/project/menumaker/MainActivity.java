@@ -51,17 +51,12 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new FridgeFragment());
                     return true;
                 case R.id.navigation_dishes:
-                    openDishFragment(new DishesFragment());
+                    openFragment(new DishesFragment());
                     return true;
             }
             return false;
         }
     };
-
-    private void openDishFragment(DishesFragment dishesFragment) {
-        openFragment(dishesFragment);
-        dishesFragment.setActivity(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,9 +1,7 @@
 package com.ihm.project.menumaker.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,5 +57,10 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
     @Override
     public int getItemCount() {
         return dishes.size();
+    }
+
+    public void updateList(List<Dish> dishes){
+        this.dishes = dishes;
+        this.notifyDataSetChanged();
     }
 }

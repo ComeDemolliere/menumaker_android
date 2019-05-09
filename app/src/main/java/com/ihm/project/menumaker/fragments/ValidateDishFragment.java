@@ -41,7 +41,7 @@ public class ValidateDishFragment extends Fragment {
         Date currentDate = new Date(calendar.getDate());
         dish.setDate(currentDate);
         System.out.println(dish.getDate());
-        dateText.setText(currentDate.getDate() + "/" + currentDate.getMonth() + "/" + (currentDate.getYear() + 1900));
+        dateText.setText(currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + (currentDate.getYear() + 1900));
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

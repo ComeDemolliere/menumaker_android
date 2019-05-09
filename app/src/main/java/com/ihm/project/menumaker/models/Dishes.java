@@ -43,6 +43,8 @@ public class Dishes {
     public static void eatDish(){
         if(currentDish != null){
             dishesEaten.add(currentDish);
+            if(!suggestedDishes.contains(currentDish))
+                suggestedDishes.add(currentDish);
         }
     }
 
@@ -62,5 +64,17 @@ public class Dishes {
 
     public static void setCurrentDish(Dish d){
         currentDish = new Dish(d);
+    }
+
+    public static List<Dish> filter(List<Dish> dishList, String filter){
+        String f = filter.toLowerCase();
+        System.out.println(f);
+        List<Dish> res = new ArrayList<>();
+        for (Dish d: dishList) {
+            if(d.getName().toLowerCase().contains(f)) {
+                res.add(d);
+            }
+        }
+        return res;
     }
 }
