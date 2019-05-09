@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
 
         dishFinderFragment = new DishFinderFragment();
-        createGuestFrament = new CreateGuestFragment();
+        manageGuestFragment = new ManageGuestFragment();
         ingredientAddingProvision = new IngredientAddingProvision();
         ingredientAddingToBuyList= new IngredientAddingToBuyList();
         manageGuestFragment = new ManageGuestFragment();
