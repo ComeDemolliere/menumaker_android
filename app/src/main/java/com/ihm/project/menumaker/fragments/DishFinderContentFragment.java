@@ -7,11 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
@@ -45,6 +48,7 @@ public class DishFinderContentFragment extends Fragment {
         ImageView image = layoutItem.findViewById(R.id.dishImage);
         TextView name = layoutItem.findViewById(R.id.dishName);
         TextView recipe = layoutItem.findViewById(R.id.dishRecipe);
+        Switch swi = layoutItem.findViewById(R.id.switch1);
 
         Button button = layoutItem.findViewById(R.id.button2);
 
@@ -52,8 +56,18 @@ public class DishFinderContentFragment extends Fragment {
             dish = Dishes.getDishes().get(getArguments().getInt("EXTRA_DISH_POS"));
             image.setImageResource(dish.getImageWithContext(getContext()));
             name.setText(dish.getName());
+            swi.setChecked(dish.getFav());
             recipe.setText(dish.getReceipe());
         }
+
+        swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) Dishes.addDishToFav(dish);
+                else Dishes.rmDishToFav(dish);
+            }
+        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { createDialog(); }

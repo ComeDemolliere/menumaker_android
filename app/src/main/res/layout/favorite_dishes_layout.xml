@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="128sp"
-    android:layout_height="158sp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="6dip">
 
     <ImageView
         android:id="@+id/imageDish"
-        android:layout_width="match_parent"
+        android:layout_width="128sp"
         android:layout_height="128sp" />
 
     <TextView
         android:id="@+id/nameDish"
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
         android:layout_marginTop="128sp"
-        android:text="plat"/>
+        android:text="plat" />
 
 </RelativeLayout>

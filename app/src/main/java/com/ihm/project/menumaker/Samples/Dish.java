@@ -18,6 +18,8 @@ public class Dish {
 
     private List<Ingredient> ingredients;
 
+    private boolean fav = false;
+
     public Dish(String name, String image, String receipe, List<Ingredient> ingredients) {
         this.name = name;
         this.image = image;
@@ -45,6 +47,10 @@ public class Dish {
         return context.getResources().getIdentifier(image, "drawable",  context.getPackageName());
     }
 
+    public boolean getFav(){ return this.fav;}
+
+    public void setFav(boolean fav) { this.fav = fav;}
+
     public Date getDate() {
         return date;
     }
@@ -55,5 +61,11 @@ public class Dish {
 
     public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Dish d = (Dish) o;
+        return d.getName().equals(name);
     }
 }

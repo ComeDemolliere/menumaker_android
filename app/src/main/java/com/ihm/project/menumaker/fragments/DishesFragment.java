@@ -17,6 +17,8 @@ import com.ihm.project.menumaker.models.Dishes;
 
 public class DishesFragment extends Fragment {
     private FavAndSugDishRVAdapter favAdapter;
+    private FavAndSugDishRVAdapter sugAdapter;
+    private FavAndSugDishRVAdapter allAdapter;
     private Activity activity;
 
     public static DishesFragment newInstance() {
@@ -33,15 +35,30 @@ public class DishesFragment extends Fragment {
         final View view =  inflater.inflate(R.layout.dishes_fragment, container, false);
 
         RecyclerView favList = view.findViewById(R.id.favList);
-        favAdapter = new FavAndSugDishRVAdapter(getContext(), Dishes.getDishes(), getFragmentManager().beginTransaction());
+        RecyclerView sugList = view.findViewById(R.id.sugList);
+        RecyclerView allList = view.findViewById(R.id.allList);
+
+        //init Adapter
+        favAdapter = new FavAndSugDishRVAdapter(getContext(), Dishes.getFavoriteDishes(), getFragmentManager().beginTransaction());
+        sugAdapter = new FavAndSugDishRVAdapter(getContext(), Dishes.getDishes(), getFragmentManager().beginTransaction());
+        allAdapter = new FavAndSugDishRVAdapter(getContext(), Dishes.getDishes(), getFragmentManager().beginTransaction());
 
         //orientation
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager llm1 = new LinearLayoutManager(getContext());
+        llm1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager llm2 = new LinearLayoutManager(getContext());
+        llm2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager llm3 = new LinearLayoutManager(getContext());
+        llm3.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         //set  my recyclerView
-        favList.setLayoutManager(llm);
+        favList.setLayoutManager(llm1);
+        sugList.setLayoutManager(llm2);
+        allList.setLayoutManager(llm3);
         favList.setAdapter(favAdapter);
+        sugList.setAdapter(sugAdapter);
+        allList.setAdapter(allAdapter);
+
         return  view;
     }
 

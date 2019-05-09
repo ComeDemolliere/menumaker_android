@@ -21,7 +21,6 @@ public class Dishes {
         currentDish = null;
         JsonManager jsonManager = new JsonManager(context, "dish.json");
         dishes = jsonManager.getAllDishesFromJSON();
-        favoriteDishes = dishes;
     }
 
     public static void add(Dish dish) {
@@ -45,6 +44,16 @@ public class Dishes {
         if(currentDish != null){
             dishesEaten.add(currentDish);
         }
+    }
+
+    public static void addDishToFav(Dish d) {
+        favoriteDishes.add(d);
+        d.setFav(true);
+    }
+
+    public static void rmDishToFav(Dish d) {
+        d.setFav(false);
+        favoriteDishes.remove(d);
     }
 
     public static Dish getCurrentDish(){
