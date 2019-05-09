@@ -41,7 +41,7 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
             public void onClick(View v) {
                 Dishes.setCurrentDish(dishes.get(pos));
                 //move to your fragment
-                transaction.replace(R.id.container, new HomeFragment());
+                transaction.replace(R.id.main_container, new HomeFragment());
                 transaction.commit();
             }
         });

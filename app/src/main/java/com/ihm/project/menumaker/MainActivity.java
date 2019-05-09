@@ -9,6 +9,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         calendarManager.init();
 
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -85,13 +89,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.main_container, fragment);
         transaction.commit();
     }
 
@@ -101,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDishFinder (View v) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, dishFinderFragment);
+        transaction.replace(R.id.main_container, dishFinderFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -136,14 +147,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void createIngredient(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, ingredientAddingProvision);
+        transaction.replace(R.id.main_container, ingredientAddingProvision);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     public void createIngredientToBuyList(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, ingredientAddingToBuyList);
+        transaction.replace(R.id.main_container, ingredientAddingToBuyList);
         transaction.addToBackStack(null);
         transaction.commit();
     }
