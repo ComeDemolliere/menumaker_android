@@ -12,5 +12,10 @@
     "name": "Steack",
     "quantity": 3,
     "ingredientsType": "COUNTABLE"
+  },
+  {
+    "name": "Riz rond",
+    "quantity": 1000,
+    "ingredientsType": "POUNDABLE"
   }
 ]

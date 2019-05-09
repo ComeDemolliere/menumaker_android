@@ -16,11 +16,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ihm.project.menumaker.fragments.CreateGuestFragment;
+import com.ihm.project.menumaker.fragments.guests.ContactsFragment;
+import com.ihm.project.menumaker.fragments.guests.CreateGuestFragment;
+import com.ihm.project.menumaker.fragments.guests.ManageGuestFragment;
 import com.ihm.project.menumaker.fragments.DishFinderFragment;
 import com.ihm.project.menumaker.fragments.DishesFragment;
 import com.ihm.project.menumaker.fragments.FridgeFragment;
@@ -42,10 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
     private DishFinderFragment dishFinderFragment;
-    private CreateGuestFragment createGuestFrament;
+    private ManageGuestFragment manageGuestFragment;
     private CalendarManager calendarManager;
     private IngredientAddingProvision ingredientAddingProvision;
     private IngredientAddingToBuyList ingredientAddingToBuyList;
+    private CreateGuestFragment createGuestFragment;
+    private ContactsFragment contactsFragment;
+
     String currentPhotoPath;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,17 +67,12 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new FridgeFragment());
                     return true;
                 case R.id.navigation_dishes:
-                    openDishFragment(new DishesFragment());
+                    openFragment(new DishesFragment());
                     return true;
             }
             return false;
         }
     };
-
-    private void openDishFragment(DishesFragment dishesFragment) {
-        openFragment(dishesFragment);
-        dishesFragment.setActivity(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         calendarManager.init();
 
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -95,9 +99,19 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
 
         dishFinderFragment = new DishFinderFragment();
-        createGuestFrament = new CreateGuestFragment();
+        manageGuestFragment = new ManageGuestFragment();
         ingredientAddingProvision = new IngredientAddingProvision();
         ingredientAddingToBuyList= new IngredientAddingToBuyList();
+        manageGuestFragment = new ManageGuestFragment();
+        createGuestFragment = new CreateGuestFragment();
+        contactsFragment = new ContactsFragment();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
@@ -107,17 +121,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.main_container, fragment);
         transaction.commit();
     }
 
+    public void openCreateGuestWithoutContact(View v) {
+       this.openFragment(createGuestFragment);
+    }
+    public void openCreateGuestWithContact(View v) {
+       this.openFragment(contactsFragment);
+    }
+    public void openCreateGuestWithContactSelected(View v, String contactName) {
+       this.openFragment(createGuestFragment);
+       createGuestFragment.setName(contactName);
+    }
+
     public void openAddGuestActivity(View v) {
-        this.openFragment(createGuestFrament);
+        this.openFragment(manageGuestFragment);
     }
 
     public void openDishFinder (View v) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, dishFinderFragment);
+        transaction.replace(R.id.main_container, dishFinderFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -152,14 +177,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void createIngredient(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, ingredientAddingProvision);
+        transaction.replace(R.id.main_container, ingredientAddingProvision);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     public void createIngredientToBuyList(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, ingredientAddingToBuyList);
+        transaction.replace(R.id.main_container, ingredientAddingToBuyList);
         transaction.addToBackStack(null);
         transaction.commit();
     }

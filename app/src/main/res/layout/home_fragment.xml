@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="100sp"
+        android:layout_marginBottom="20sp"
         android:text="À court d'idées ?"
         android:onClick="openDishFinder"/>
 
@@ -20,7 +20,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="175dp" />
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="100sp" />
 
 </RelativeLayout>

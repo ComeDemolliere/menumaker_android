@@ -10,7 +10,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/removing_fridge" />
 
     <Button
@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="261dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/validation_fridge"
         android:onClick="createIngredientToBuyList"/>
 
