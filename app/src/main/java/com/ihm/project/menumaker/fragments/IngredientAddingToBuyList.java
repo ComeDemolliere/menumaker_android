@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ public class IngredientAddingToBuyList extends Fragment implements View.OnClickL
     EditText nameofIngredient;
     EditText quantity;
     String spi;
+    int ingredienType;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -51,7 +54,18 @@ public class IngredientAddingToBuyList extends Fragment implements View.OnClickL
 
         //spinner.setOnItemSelectedListener(this);
 
-        spi= (String)spinner.getSelectedItem();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ingredienType=position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ingredienType=0;
+            }
+        });
 
         Button addbuton= (Button) layoutItem.findViewById(R.id.button1_add_ingredient);
 
@@ -65,17 +79,20 @@ public class IngredientAddingToBuyList extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if (spi.equals("g")) {
-            Ingredients.getToBuyList().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
+
+        if(ingredienType==0)  {
+            Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
         }
 
-        if (spi.equals("L")) {
-            Ingredients.getToBuyList().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
+        if(ingredienType==1) {
+            Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
         }
 
-        if (spi.equals("u")) {
-            Ingredients.getToBuyList().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
+        if(ingredienType==2){
+            Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
         }
+        getFragmentManager().popBackStackImmediate();
+
     }
 }
 
