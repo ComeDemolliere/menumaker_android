@@ -9,6 +9,7 @@ import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FridgeProvisions extends Fragment implements AbsListView.MultiChoiceModeListener {
+public class FridgeProvisions extends Fragment {
 
     ListView provisions;
     List provisons2=Ingredients.getProvisions();
@@ -48,14 +49,6 @@ public class FridgeProvisions extends Fragment implements AbsListView.MultiChoic
 
         provisions = layoutItem.findViewById(R.id.provisions);
 
-        Button remove= (Button) layoutItem.findViewById(R.id.remove);
-
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeSelected();
-            }
-        });
 
         provisions.setAdapter(fridgeAdapter);
 
@@ -63,56 +56,5 @@ public class FridgeProvisions extends Fragment implements AbsListView.MultiChoic
         return view;
     }
 
-    @Override
-    public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-        mode.setTitle(provisions.getCheckedItemCount() + " selected ingredients");
-    }
 
-    @Override
-    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        return false;
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return false;
-    }
-
-    @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.remove:
-                removeSelected();
-                mode.finish();
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-
-    }
-
-    private void removeSelected()   {
-        SparseBooleanArray checkeditems = provisions.getCheckedItemPositions();
-        ArrayList itemsToDelete = new ArrayList<>();
-
-        System.out.println(checkeditems);
-
-        for(int i = provisions.getCount() - 1; i >= 0; i--) {
-            if(checkeditems.get(i)) {
-                //adapter.remove(data.get(i));
-                itemsToDelete.add(fridgeAdapter.getItem(i));
-            }
-        }
-
-        //Boucle de suppression
-        for(int i = 0; i < itemsToDelete.size(); i++) {
-            itemsToDelete.remove(itemsToDelete.get(i));
-        }
-
-        fridgeAdapter.notifyDataSetChanged();
-        checkeditems.clear();
-    }
 }
