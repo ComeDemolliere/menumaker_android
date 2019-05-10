@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,15 +13,14 @@ import com.ihm.project.menumaker.Samples.Ingredient;
 
 import java.util.List;
 
-public class IngredientsListAdapter extends BaseAdapter  {
+public class SimpleIngredientAdapter extends BaseAdapter {
     private List<Ingredient> ingredients;
-    private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
+    private LayoutInflater mInflater;
 
-    public IngredientsListAdapter(Context context, List<Ingredient> listView){
+    public SimpleIngredientAdapter(Context context, List<Ingredient> listView){
         this.ingredients = listView;
         mInflater = LayoutInflater.from(context);
     }
-
 
     @Override
     public int getCount() {
@@ -41,28 +39,18 @@ public class IngredientsListAdapter extends BaseAdapter  {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.ingredient_layout, parent, false);
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.ingredient_normal, parent, false);
 
-        TextView name = layoutItem.findViewById(R.id.name_ingredient);
-        TextView quantity = layoutItem.findViewById(R.id.quantity_ingredient);
+        TextView name = layoutItem.findViewById(R.id.name_ingredient1);
+        TextView quantity = layoutItem.findViewById(R.id.quantity_ingredient1);
 
         Ingredient ingredient = ingredients.get(position);
 
         name.setText(ingredient.getName());
         quantity.setText(ingredient.getQuantity() + " " + ingredient.show());
 
-        Button button= (Button) layoutItem.findViewById(R.id.removing);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ingredients.remove(position);
-                notifyDataSetChanged();
-            }
-        });
         layoutItem.setTag(position);
 
         return layoutItem;
     }
-
 }
