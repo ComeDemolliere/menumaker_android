@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.fridge;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

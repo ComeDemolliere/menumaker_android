@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
-import com.ihm.project.menumaker.fragments.HomeFragment;
+import com.ihm.project.menumaker.fragments.home.HomeFragment;
 import com.ihm.project.menumaker.models.Dishes;
 
 import java.util.List;
@@ -40,6 +40,7 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
                 Dishes.setCurrentDish(dishes.get(pos));
                 //move to your fragment
                 transaction.replace(R.id.main_container, new HomeFragment());
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

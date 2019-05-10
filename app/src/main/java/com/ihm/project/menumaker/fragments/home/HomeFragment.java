@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,9 +15,10 @@ import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.DishesAdapter;
 import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
+import com.ihm.project.menumaker.fragments.IListenItem;
 import com.ihm.project.menumaker.models.Dishes;
 
-public class HomeFragment extends Fragment implements IListenItem{
+public class HomeFragment extends Fragment implements IListenItem {
 
     //private ListView dishes;
 

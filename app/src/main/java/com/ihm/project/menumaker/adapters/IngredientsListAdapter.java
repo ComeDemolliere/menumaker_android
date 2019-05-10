@@ -5,20 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Ingredient;
-import com.ihm.project.menumaker.fragments.IListenItem2;
 
 import java.util.List;
 
 public class IngredientsListAdapter extends BaseAdapter {
     private List<Ingredient> ingredients;
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
-    private IListenItem2 listViewListen2;
 
     public IngredientsListAdapter(Context context, List<Ingredient> listView){
         this.ingredients = listView;
@@ -56,9 +53,5 @@ public class IngredientsListAdapter extends BaseAdapter {
         layoutItem.setTag(position);
 
         return layoutItem;
-    }
-
-    public void addListener(IListenItem2 itemToListen) {
-        listViewListen2 = itemToListen;
     }
 }
