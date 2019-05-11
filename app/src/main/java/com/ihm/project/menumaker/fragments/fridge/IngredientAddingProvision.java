@@ -82,15 +82,15 @@ public class IngredientAddingProvision extends Fragment implements View.OnClickL
     public void onClick(View v) {
 
             if(ingredienType==0)  {
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
+                Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
             }
 
             if(ingredienType==1) {
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
+                Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
             }
 
           if(ingredienType==2){
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
+                Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
             }
 
         getFragmentManager().popBackStackImmediate();

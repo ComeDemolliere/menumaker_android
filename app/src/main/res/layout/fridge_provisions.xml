@@ -12,8 +12,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="160dp"
+        android:layout_centerInParent="false"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:layout_marginBottom="30dp"
         android:onClick="createIngredient"
         android:text="@string/validation_fridge" />
@@ -29,6 +30,6 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="150dp" />
+        android:layout_marginBottom="120dp" />
 
 </RelativeLayout>
