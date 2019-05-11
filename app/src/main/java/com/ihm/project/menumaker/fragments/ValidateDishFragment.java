@@ -1,9 +1,6 @@
 package com.ihm.project.menumaker.fragments;
 
-import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

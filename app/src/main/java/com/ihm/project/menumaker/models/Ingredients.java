@@ -67,4 +67,14 @@ public class Ingredients {
         toBuyList.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
     }
 
+    public static void addToProvisions (Ingredient ing){
+        for (Ingredient i: provisions) {
+            if(i.equals(ing)){
+                i.setQuantity(i.getQuantity() + ing.getQuantity());
+                return;
+            }
+        }
+        provisions.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
+    }
+
 }

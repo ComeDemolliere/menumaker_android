@@ -10,8 +10,8 @@
     <string name="take_pic">Take pic</string>
     <string name="title_provisions">Provisions</string>
     <string name="title_shop">Shopping List</string>
-    <string name="validation_fridge"> Add </string>
-    <string name="removing_fridge" >Remove</string>
+    <string name="validation_fridge">Ajouter un ingrédient</string>
+    <string name="removing_fridge" >X</string>
     <string name="ingredients_type"> L, g or unities</string>
     <string name="recipe">Recette</string>
     <string name="recipe_name">Nom de la recette</string>
