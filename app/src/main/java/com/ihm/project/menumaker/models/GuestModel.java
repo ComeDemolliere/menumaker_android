@@ -1,6 +1,7 @@
 package com.ihm.project.menumaker.models;
 
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.Samples.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +23,19 @@ public class GuestModel {
 
     public static class Guest {
         private String name;
-        private List<Dish> dishesNotLiking;
+        private List<Ingredient> ingredientsNotLiking;
 
         @Override
         public String toString() {
             return "Guest{" +
                     "name='" + name + '\'' +
-                    ", dishesNotLiking=" + dishesNotLiking +
+                    ", ingredientsNotLiking=" + ingredientsNotLiking +
                     '}';
         }
 
-        public Guest(String name, List<Dish> dishesNotLiking) {
+        public Guest(String name, List<Ingredient> ingredientsNotLiking) {
             this.name = name;
-            this.dishesNotLiking = dishesNotLiking;
+            this.ingredientsNotLiking = ingredientsNotLiking;
         }
 
 

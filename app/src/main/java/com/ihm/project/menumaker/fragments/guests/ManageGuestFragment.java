@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.Samples.Ingredient;
 import com.ihm.project.menumaker.adapters.GuestAdapter;
 import com.ihm.project.menumaker.models.GuestModel;
 
@@ -34,9 +35,6 @@ public class ManageGuestFragment extends Fragment {
                 container, false);
         ListView guests = view.findViewById(R.id.guestsListView);
 
-
-
-        GuestModel.addGuest(new GuestModel.Guest("bo", new ArrayList<Dish>()));
         GuestAdapter guestAdapter = new GuestAdapter(getContext(), GuestModel.getGuests());
 
 

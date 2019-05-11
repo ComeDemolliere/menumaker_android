@@ -23,16 +23,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ihm.project.menumaker.fragments.CreateRecipeFragment;
+import com.ihm.project.menumaker.fragments.dish.CreateRecipeFragment;
 import com.ihm.project.menumaker.fragments.guests.ContactsFragment;
 import com.ihm.project.menumaker.fragments.guests.CreateGuestFragment;
 import com.ihm.project.menumaker.fragments.guests.ManageGuestFragment;
-import com.ihm.project.menumaker.fragments.DishFinderFragment;
-import com.ihm.project.menumaker.fragments.DishesFragment;
-import com.ihm.project.menumaker.fragments.FridgeFragment;
-import com.ihm.project.menumaker.fragments.HomeFragment;
-import com.ihm.project.menumaker.fragments.IngredientAddingProvision;
-import com.ihm.project.menumaker.fragments.IngredientAddingToBuyList;
+import com.ihm.project.menumaker.fragments.home.DishFinderFragment;
+import com.ihm.project.menumaker.fragments.dish.DishesFragment;
+import com.ihm.project.menumaker.fragments.fridge.FridgeFragment;
+import com.ihm.project.menumaker.fragments.home.HomeFragment;
+import com.ihm.project.menumaker.fragments.fridge.IngredientAddingProvision;
+import com.ihm.project.menumaker.fragments.fridge.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.Ingredients;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
     private ContactsFragment contactsFragment;
+    private DishesFragment dishesFragment;
     private CreateRecipeFragment createRecipeFragment;
 
     private String currentPhotoPath;
@@ -64,13 +65,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    openFragment(new HomeFragment());
+                    openFragment(new HomeFragment(), false);
                     return true;
                 case R.id.navigation_fridge:
-                    openFragment(new FridgeFragment());
+                    openFragment(new FridgeFragment(), false);
                     return true;
                 case R.id.navigation_dishes:
-                    openFragment(new DishesFragment());
+                    dishesFragment = new DishesFragment();
+                    openFragment(dishesFragment, false);
+                    openFragment(new DishesFragment(), false);
                     return true;
             }
             return false;
@@ -123,36 +126,38 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    public void openFragment(Fragment fragment) {
+    public void openFragment(Fragment fragment, boolean stack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_container, fragment);
+        if(stack) transaction.addToBackStack(null);
         transaction.commit();
     }
 
     public void openCreateGuestWithoutContact(View v) {
-       this.openFragment(createGuestFragment);
+       this.openFragment(createGuestFragment, false);
     }
+
     public void openCreateGuestWithContact(View v) {
-       this.openFragment(contactsFragment);
+       this.openFragment(contactsFragment, false);
     }
+
     public void openCreateGuestWithContactSelected(View v, String contactName) {
-       this.openFragment(createGuestFragment);
+       this.openFragment(createGuestFragment, false);
        createGuestFragment.setName(contactName);
     }
 
+
+    public void openDishesFragment() {
+        this.openFragment(this.dishesFragment, false);
+    }
     public void openAddGuestActivity(View v) {
-        this.openFragment(manageGuestFragment);
+        this.openFragment(manageGuestFragment, false);
     }
 
-    public void openDishFinder (View v) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_container, dishFinderFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+    public void openDishFinder (View v) { openFragment(dishFinderFragment, true);}
 
     public void openCreateRecipe(View v) {
-        this.openFragment(createRecipeFragment);
+        this.openFragment(createRecipeFragment, true);
     }
 
     public void onBackPressed(View v){
@@ -164,15 +169,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void chooseDish(View v){
         Dishes.setCurrentDish(Dishes.getDishes().get(dishFinderFragment.getViewPager().getCurrentItem()));
-        openFragment(new ValidateDishFragment());
+        openFragment(new ValidateDishFragment(), false);
     }
 
     public void validateDish(View v){
         addEventToCalendar();
         Dishes.eatDish();
-        openFragment(new HomeFragment());
+        openFragment(new HomeFragment(), false);
     }
 
     private void addEventToCalendar(){
@@ -184,17 +190,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createIngredient(View view) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_container, ingredientAddingProvision);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        openFragment(ingredientAddingProvision, true);
     }
 
     public void createIngredientToBuyList(View view) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_container, ingredientAddingToBuyList);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        openFragment(ingredientAddingProvision, true);
     }
 
     public void addIngredient(){

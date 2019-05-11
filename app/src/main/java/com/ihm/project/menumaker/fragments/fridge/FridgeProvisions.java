@@ -1,23 +1,35 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.fridge;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.ihm.project.menumaker.R;
-import com.ihm.project.menumaker.Samples.Ingredient;
 import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
 import com.ihm.project.menumaker.models.Ingredients;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class FridgeProvisions extends Fragment implements IListenItem2 {
+
+public class FridgeProvisions extends Fragment {
+
+    ListView provisions;
+    List provisons2=Ingredients.getProvisions();
+    IngredientsListAdapter fridgeAdapter;
 
     public static FridgeProvisions newInstance() {
         return new FridgeProvisions();
@@ -30,22 +42,16 @@ public class FridgeProvisions extends Fragment implements IListenItem2 {
 
         RelativeLayout layoutItem = (RelativeLayout) view;
 
-        IngredientsListAdapter fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getProvisions());
+        fridgeAdapter = new IngredientsListAdapter(getContext(), Ingredients.getProvisions());
 
-        ListView provisions = layoutItem.findViewById(R.id.provisions);
+        provisions = layoutItem.findViewById(R.id.provisions);
 
 
         provisions.setAdapter(fridgeAdapter);
-        fridgeAdapter.addListener(this);
 
 
         return view;
     }
 
-    @Override
-    public void onClickItem(Ingredient ingredient) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(ingredient.getName());
-        builder.show();
-    }
+
 }

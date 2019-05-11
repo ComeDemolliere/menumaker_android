@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ihm.project.menumaker.fragments.DishFinderContentFragment;
+import com.ihm.project.menumaker.fragments.home.DishFinderContentFragment;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class DishFinderSlidePagerAdapter extends FragmentPagerAdapter {

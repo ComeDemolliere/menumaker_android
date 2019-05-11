@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,9 +15,11 @@ import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.DishesAdapter;
 import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
+import com.ihm.project.menumaker.adapters.SimpleIngredientAdapter;
+import com.ihm.project.menumaker.fragments.IListenItem;
 import com.ihm.project.menumaker.models.Dishes;
 
-public class HomeFragment extends Fragment implements IListenItem{
+public class HomeFragment extends Fragment implements IListenItem {
 
     //private ListView dishes;
 
@@ -52,7 +54,7 @@ public class HomeFragment extends Fragment implements IListenItem{
             public void onClick(DialogInterface dialog, int which) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(dish.getName());
-                IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
+                SimpleIngredientAdapter adapter = new SimpleIngredientAdapter(builder.getContext(), dish.getIngredients());
                 builder.setAdapter(adapter, null);
                 builder.setPositiveButton("Recette", new DialogInterface.OnClickListener() {
                     @Override

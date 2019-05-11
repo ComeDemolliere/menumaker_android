@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.ihm.project.menumaker.MainActivity;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.adapters.ContactsAdapter;
 import com.tomash.androidcontacts.contactgetter.entity.ContactData;
@@ -76,6 +77,14 @@ public class ContactsFragment extends Fragment {
         ContactsAdapter adapter = new ContactsAdapter(getContext(), contactList, getActivity());
 
         contactsList.setAdapter(adapter);
+        contactsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("bo-bo", "test");
+                MainActivity mainActivity = (MainActivity) getContext();
+                mainActivity.openCreateGuestWithContactSelected(view, contactList.get(position).getCompositeName());
+            }
+        });
         EditText editText = getView().findViewById(R.id.searchContact);
         editText.addTextChangedListener(new TextWatcher() {
             @Override

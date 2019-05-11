@@ -1,13 +1,11 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.home;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +18,7 @@ import android.widget.TextView;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
+import com.ihm.project.menumaker.adapters.SimpleIngredientAdapter;
 import com.ihm.project.menumaker.models.Dishes;
 
 public class DishFinderContentFragment extends Fragment {
@@ -79,7 +78,7 @@ public class DishFinderContentFragment extends Fragment {
     private void createDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Ingrédients");
-        IngredientsListAdapter adapter = new IngredientsListAdapter(builder.getContext(), dish.getIngredients());
+        SimpleIngredientAdapter adapter = new SimpleIngredientAdapter(builder.getContext(), dish.getIngredients());
         builder.setAdapter(adapter, null);
         builder.setPositiveButton("Retour", null);
         builder.show();
