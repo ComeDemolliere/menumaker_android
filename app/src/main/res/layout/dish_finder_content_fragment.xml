@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DishFinderContentFragment">
+    tools:context=".fragments.home.DishFinderContentFragment">
 
     <ImageView
         android:id="@+id/dishImage"
@@ -65,7 +65,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/Recette"
         android:layout_marginTop="20sp"
-        android:layout_marginBottom="100sp"
         android:layout_marginRight="15sp"
         android:layout_marginLeft="15sp">
 

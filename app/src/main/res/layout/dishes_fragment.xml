@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DishesFragment">
+    tools:context=".fragments.dish.DishesFragment">
 
     <SearchView
         android:id="@+id/search"
@@ -21,7 +21,8 @@
         android:layout_marginLeft="20sp"
         android:layout_toRightOf="@+id/addGuest"
         android:text="@string/create_recipe"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:onClick="openCreateRecipe"/>
 
     <Button
         android:id="@+id/addGuest"
@@ -37,8 +38,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addGuest"
-        android:layout_marginBottom="90sp">
+        android:layout_below="@+id/addGuest">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="10sp"
-                android:text="Mes favoris" />
+                android:text="Mes favoris"
+                android:textSize="18sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/favList"
@@ -70,7 +71,8 @@
                 android:layout_below="@+id/favList"
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
-                android:text="Suggestions" />
+                android:text="Suggestions"
+                android:textSize="18sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/sugList"
@@ -88,7 +90,8 @@
                 android:layout_below="@+id/sugList"
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
-                android:text="Divers" />
+                android:text="Divers"
+                android:textSize="18sp"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/allList"

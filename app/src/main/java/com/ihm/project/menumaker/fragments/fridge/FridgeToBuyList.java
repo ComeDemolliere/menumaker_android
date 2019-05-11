@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.fridge;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +16,7 @@ import com.ihm.project.menumaker.adapters.IngredientsListAdapter;
 import com.ihm.project.menumaker.models.Ingredients;
 
 
-public class FridgeToBuyList extends Fragment implements IListenItem2 {
+public class FridgeToBuyList extends Fragment{
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,14 +31,8 @@ public class FridgeToBuyList extends Fragment implements IListenItem2 {
 
 
         toBuyList.setAdapter(fridgeAdapter);
-        fridgeAdapter.addListener(this);
 
 
         return view;
-    }
-
-    @Override
-    public void onClickItem(Ingredient ingredient) {
-
     }
 }

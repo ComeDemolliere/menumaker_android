@@ -57,7 +57,7 @@ public class DishesAdapter extends BaseAdapter {
 
         Date dishDate = listView.get(position).getDate();
         if(dishDate != null)
-            date.setText(dishDate.getDate() + "/" + dishDate.getMonth() + "/" + (dishDate.getYear() + 1900));
+            date.setText(dishDate.getDate() + "/" + (dishDate.getMonth() + 1) + "/" + (dishDate.getYear() + 1900));
 
         layoutItem.setTag(position);
 

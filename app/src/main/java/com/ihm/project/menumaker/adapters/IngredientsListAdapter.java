@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 public class IngredientsListAdapter extends BaseAdapter implements Filterable {
     private List<Ingredient> ingredients;
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
-    private IListenItem2 listViewListen2;
 
     public IngredientsListAdapter(Context context, List<Ingredient> listView){
         this.ingredients = listView;
@@ -57,6 +57,15 @@ public class IngredientsListAdapter extends BaseAdapter implements Filterable {
         name.setText(ingredient.getName());
         quantity.setText(ingredient.getQuantity() + " " + ingredient.show());
 
+        Button button= (Button) layoutItem.findViewById(R.id.removing);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ingredients.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         layoutItem.setTag(position);
 
         return layoutItem;

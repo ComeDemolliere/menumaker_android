@@ -1,22 +1,19 @@
-package com.ihm.project.menumaker.fragments;
+package com.ihm.project.menumaker.fragments.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.adapters.DishFinderSlidePagerAdapter;
 
 public class DishFinderFragment extends Fragment {
 
-    private FragmentActivity myContext;
     private DishFinderSlidePagerAdapter dishAdapter;
     private ViewPager pager;
 
@@ -34,11 +31,10 @@ public class DishFinderFragment extends Fragment {
         dishAdapter = new DishFinderSlidePagerAdapter(getChildFragmentManager());
         pager = layoutItem.findViewById(R.id.viewpager);
         pager.setAdapter(dishAdapter);
+        System.out.println(pager.getCurrentItem());
 
         return view;
     }
 
-    public ViewPager getViewPager(){
-        return pager;
-    }
+    public ViewPager getViewPager() { return pager; }
 }

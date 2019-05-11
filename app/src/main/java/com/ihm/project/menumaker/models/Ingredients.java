@@ -35,4 +35,36 @@ public class Ingredients {
         return toBuyList;
     }
 
+    public static Ingredient rmIngToProvisions(Ingredient ing){
+        Ingredient res = null;
+        for (Ingredient i: provisions) {
+            if(i.equals(ing)){
+                float val = i.getQuantity() - ing.getQuantity();
+                if(val > 0){
+                    i.setQuantity(val);
+                } else {
+                    res = new Ingredient(i.getName(), i.getIngredientsType(), -val);
+                }
+                break;
+            }
+        }
+        if(res != null){
+            provisions.remove(res);
+            if((int) res.getQuantity() != 0){
+                return res;
+            }
+        }
+        return null;
+    }
+
+    public static void addIngToBuyList (Ingredient ing){
+        for (Ingredient i: toBuyList) {
+            if(i.equals(ing)){
+                i.setQuantity(i.getQuantity() + ing.getQuantity());
+                return;
+            }
+        }
+        toBuyList.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
+    }
+
 }
