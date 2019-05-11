@@ -41,7 +41,7 @@ public class Dish {
         return name;
     }
 
-    public String getImage() {return this.image;}
+    public String getImage() {return this.image; }
 
     public int getImageWithContext(Context context) {
         return context.getResources().getIdentifier(image, "drawable",  context.getPackageName());

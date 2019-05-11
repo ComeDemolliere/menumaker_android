@@ -1,6 +1,8 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.fragments.IListenItem;
 import com.ihm.project.menumaker.Samples.Dish;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -50,9 +53,22 @@ public class DishesAdapter extends BaseAdapter {
         TextView date = layoutItem.findViewById(R.id.dateDish);
         ImageView image = layoutItem.findViewById(R.id.image);
 
+        Dish dish = listView.get(position);
 
-        name.setText(listView.get(position).getName());
-        image.setImageResource(listView.get(position).getImageWithContext(mInflater.getContext()));
+        name.setText(dish.getName());
+
+        Bitmap bm;
+
+        File imgFile = new  File(dish.getImage());
+
+        if(imgFile.exists()){
+            bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        }
+        else{
+            int ressource = dish.getImageWithContext(parent.getContext());
+            bm = BitmapFactory.decodeResource(parent.getResources(), ressource);
+        }
+        image.setImageBitmap(bm);
 
 
         Date dishDate = listView.get(position).getDate();

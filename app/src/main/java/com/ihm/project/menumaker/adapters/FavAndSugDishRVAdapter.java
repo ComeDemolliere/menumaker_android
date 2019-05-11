@@ -1,6 +1,8 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.fragments.home.HomeFragment;
 import com.ihm.project.menumaker.models.Dishes;
 
+import java.io.File;
 import java.util.List;
 
 public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
@@ -20,6 +23,7 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
     private List<Dish> dishes;
     private Context context;
     private FragmentTransaction transaction;
+    private View parent;
 
     public FavAndSugDishRVAdapter(Context context, List<Dish> dishes, FragmentTransaction transaction){
         this.context = context;
@@ -30,6 +34,7 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
     @NonNull
     @Override
     public DishHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int pos) {
+        this.parent = viewGroup;
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.favorite_dishes_layout, viewGroup, false);
 
@@ -51,8 +56,22 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DishHolder dishHolder, int i) {
-        dishHolder.getDishName().setText(dishes.get(i).getName());
-        dishHolder.getDishImage().setImageResource(dishes.get(i).getImageWithContext(context));
+        Dish dish = dishes.get(i);
+        dishHolder.getDishName().setText(dish.getName());
+
+        Bitmap bm;
+
+        File imgFile = new  File(dish.getImage());
+
+        if(imgFile.exists()){
+            bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        }
+        else{
+            int ressource1 = dish.getImageWithContext(context);
+            bm = BitmapFactory.decodeResource(parent.getResources(), ressource1);
+        }
+
+        dishHolder.getDishImage().setImageResource(dish.getImageWithContext(context));
     }
 
     @Override

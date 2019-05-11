@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.Samples.Ingredient;
+import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.utils.IngredientsType;
 
 import java.io.ByteArrayOutputStream;
@@ -87,7 +89,8 @@ public class CreateRecipeFragment extends Fragment {
                 else {
                     saveToInternalStorage(photo);
                     dish = new Dish(recipe_name.getText().toString(),imagePath, recipe.getText().toString(), ingredientList);
-
+                    Dishes.add(dish);
+                    System.out.println(Dishes.getDishes().get(1).getImage());
                 }
 
             }
@@ -110,14 +113,6 @@ public class CreateRecipeFragment extends Fragment {
      }
 
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
@@ -130,10 +125,10 @@ public class CreateRecipeFragment extends Fragment {
 
 
             } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(getContext(),"Action Cancelled",Toast.LENGTH_LONG);
+                Toast.makeText(getContext(),"Action Cancelled",Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getContext(),"Action Failed",Toast.LENGTH_LONG);
+                Toast.makeText(getContext(),"Action Failed",Toast.LENGTH_LONG).show();
             }
         }
 
@@ -159,7 +154,6 @@ public class CreateRecipeFragment extends Fragment {
         ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE) ;
         File file = new File(directory,pictureName);
-        imagePath = directory.getPath();
         FileOutputStream fos = null ;
         try{
             fos = new FileOutputStream(file);
@@ -171,19 +165,35 @@ public class CreateRecipeFragment extends Fragment {
         } finally {
             try {
                 fos.close();
-            }catch (IOException e){
+            }catch (IOException | NullPointerException e){
                 e.printStackTrace();
             }
         }
 
         try {
             final String s = (String) MediaStore.Images.Media.insertImage((ContentResolver) getActivity().getContentResolver(), file.getPath(),pictureName,"");
-            Toast.makeText(getContext(),"New Picture Saved",Toast.LENGTH_LONG);
+            imagePath = getRealPathFromUri(getContext(),Uri.parse(s));
+            System.out.println(imagePath);
+            Toast.makeText(getContext(),"Votre recette a bien été créee",Toast.LENGTH_LONG).show();
         }catch (FileNotFoundException e){
             e.printStackTrace();
 
         }
 
+    }
+    public static String getRealPathFromUri(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
 }

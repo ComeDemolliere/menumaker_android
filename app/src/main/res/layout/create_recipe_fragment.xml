@@ -17,7 +17,7 @@
             android:layout_height="128dp"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="50sp"
-            android:onClick="dispatchTakePictureIntent"/>
+            app:srcCompat="@drawable/add_pic" />
 
         <EditText
             android:id="@+id/recipeNameAdded"
@@ -27,7 +27,6 @@
             android:layout_marginTop="100sp"
             android:hint="@string/recipe_name"
             android:inputType="text"
-            app:srcCompat="@drawable/add_pic"
             />
 
     </LinearLayout>
