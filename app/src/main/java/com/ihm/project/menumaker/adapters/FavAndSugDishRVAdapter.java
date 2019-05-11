@@ -71,7 +71,7 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
             bm = BitmapFactory.decodeResource(parent.getResources(), ressource1);
         }
 
-        dishHolder.getDishImage().setImageResource(dish.getImageWithContext(context));
+        dishHolder.getDishImage().setImageBitmap(bm);
     }
 
     @Override
