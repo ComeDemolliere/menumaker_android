@@ -56,7 +56,7 @@ public class CreateGuestFragment extends Fragment {
         JsonManager jsonManager = new JsonManager(getContext(), "ingredients.json");
 
         ingredients = jsonManager.getEveryIngredients();
-        IngredientsListAdapter adapter = new IngredientsListAdapter(getContext(), ingredients);
+        IngredientsListAdapter adapter = new IngredientsListAdapter(getContext(), ingredients, R.layout.ingredient_layout_without_quantity);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

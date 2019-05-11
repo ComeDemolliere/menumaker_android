@@ -1,6 +1,7 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Ingredient;
-import com.ihm.project.menumaker.fragments.IListenItem2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,17 @@ public class IngredientsListAdapter extends BaseAdapter implements Filterable {
     private List<Ingredient> ingredients;
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
 
+    private int layout;
     public IngredientsListAdapter(Context context, List<Ingredient> listView){
         this.ingredients = listView;
         mInflater = LayoutInflater.from(context);
+        layout = R.layout.ingredient_layout;
+    }
+
+    public IngredientsListAdapter(Context context, List<Ingredient> listView, int layout){
+        this.ingredients = listView;
+        mInflater = LayoutInflater.from(context);
+        this.layout = layout;
     }
 
 
@@ -47,33 +55,43 @@ public class IngredientsListAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.ingredient_layout, parent, false);
 
-        TextView name = layoutItem.findViewById(R.id.name_ingredient);
-        TextView quantity = layoutItem.findViewById(R.id.quantity_ingredient);
 
-        Ingredient ingredient = ingredients.get(position);
+        if (R.layout.ingredient_layout == layout) {
+            RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(layout, parent, false);
 
-        name.setText(ingredient.getName());
-        quantity.setText(ingredient.getQuantity() + " " + ingredient.show());
+            TextView name = layoutItem.findViewById(R.id.name_ingredient);
 
-        Button button= (Button) layoutItem.findViewById(R.id.removing);
+            Ingredient ingredient = ingredients.get(position);
+            name.setText(ingredient.getName());
+            TextView quantity = layoutItem.findViewById(R.id.quantity_ingredient);
+            quantity.setText(ingredient.getQuantity() + " " + ingredient.show());
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ingredients.remove(position);
-                notifyDataSetChanged();
-            }
-        });
-        layoutItem.setTag(position);
+            Button button = (Button) layoutItem.findViewById(R.id.removing);
 
-        return layoutItem;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ingredients.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+            layoutItem.setTag(position);
+            return layoutItem;
+        } else {
+            ConstraintLayout layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.ingredient_layout_without_quantity, parent, false);
+
+            TextView name = layoutItem.findViewById(R.id.name_ingredient2);
+
+            Ingredient ingredient = ingredients.get(position);
+            name.setText(ingredient.getName());
+
+            return layoutItem;
+        }
+
+
     }
 
-    public void addListener(IListenItem2 itemToListen) {
-        listViewListen2 = itemToListen;
-    }
 
     private Filter filter;
     private List<Ingredient> mOriginalValues;

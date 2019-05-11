@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dishes:
                     dishesFragment = new DishesFragment();
-                    openDishFragment(dishesFragment);
+                    openFragment(dishesFragment, false);
                     openFragment(new DishesFragment(), false);
                     return true;
             }
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openDishesFragment() {
-        this.openFragment(this.dishesFragment);
+        this.openFragment(this.dishesFragment, false);
     }
     public void openAddGuestActivity(View v) {
         this.openFragment(manageGuestFragment, false);
