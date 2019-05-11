@@ -12,30 +12,46 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/takePicture"
             android:layout_width="139dp"
             android:layout_height="128dp"
             android:layout_marginLeft="20sp"
-            android:layout_marginTop="50sp" />
+            android:layout_marginTop="50sp"
+            android:onClick="dispatchTakePictureIntent"/>
 
-        <TextView
-            android:id="@+id/textView"
+        <EditText
+            android:id="@+id/recipeNameAdded"
             android:layout_width="200sp"
             android:layout_height="42dp"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="100sp"
             android:hint="@string/recipe_name"
+            android:inputType="text"
+            app:srcCompat="@drawable/add_pic"
             />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/recipeAdded"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="200sp"
         android:layout_marginLeft="20sp"
         android:hint="@string/recipe"
-        tools:layout_marginTop="20sp" />
+        tools:layout_marginTop="40sp"
+        android:inputType="textMultiLine"
+        android:background="@android:color/transparent"
+        android:gravity="left"
+        />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginTop="20sp"
+        android:onClick="galleryAddPic"
+        />
 
 </LinearLayout>
 

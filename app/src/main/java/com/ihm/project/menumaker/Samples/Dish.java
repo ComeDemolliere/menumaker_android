@@ -68,4 +68,6 @@ public class Dish {
         Dish d = (Dish) o;
         return d.getName().equals(name);
     }
+
+    public void setImage(String image) { this.image = image;}
 }

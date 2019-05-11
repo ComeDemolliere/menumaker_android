@@ -1,6 +1,7 @@
 package com.ihm.project.menumaker;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private ContactsFragment contactsFragment;
     private CreateRecipeFragment createRecipeFragment;
 
-    String currentPhotoPath;
+    private String currentPhotoPath;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -200,7 +201,8 @@ public class MainActivity extends AppCompatActivity {
         onBackPressed();
     }
 
-    private void dispatchTakePictureIntent() { //Send the intent of taking a picture
+    /*
+    public void dispatchTakePictureIntent(View view) { //Send the intent of taking a picture
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -215,13 +217,29 @@ public class MainActivity extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "${applicationId}.fileprovider",
+                        "com.ihm.project.menumaker.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                setResult(Activity.RESULT_OK);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                System.out.println("on rentre ici");
+                ImageView img= (ImageView) findViewById(R.id.imageView);
+                setPic(img);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -229,9 +247,9 @@ public class MainActivity extends AppCompatActivity {
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,  // prefix
+                ".jpg",         // suffix
+                storageDir      // directory
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -239,15 +257,19 @@ public class MainActivity extends AppCompatActivity {
         return image;
     }
 
-    private void galleryAddPic() {
+    public void galleryAddPic(View view) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(currentPhotoPath);
+        System.out.println("chemin de la photo:"+currentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }
 
-    private void setPic(ImageView imageView) {
+
+    //save the pic to the internal storage
+
+    public void setPic(ImageView imageView) {
         // Get the dimensions of the View
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();
@@ -271,7 +293,11 @@ public class MainActivity extends AppCompatActivity {
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, null);
         imageView.setImageBitmap(bitmap);
+        ImageView img= (ImageView) findViewById(R.id.imageView);
+        System.out.println("image     "+  img);
+        int id = getResources().getIdentifier(currentPhotoPath, "drawable", getPackageName());
+        img.setImageResource(id);
     }
-
+*/
 }
 
