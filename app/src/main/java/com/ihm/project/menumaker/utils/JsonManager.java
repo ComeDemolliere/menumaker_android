@@ -3,6 +3,8 @@ package com.ihm.project.menumaker.utils;
 import android.content.Context;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.Samples.Ingredient;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class JsonManager {
     private Context context;
@@ -39,7 +42,7 @@ public class JsonManager {
         return dishes;
     }
 
-    public ArrayList<Ingredient> getAllIngredientsFromJson() {
+    public List<Ingredient> getAllIngredientsFromJson() {
         ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
         try {
@@ -51,6 +54,18 @@ public class JsonManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return ingredients;
+    }
+
+    public List<Ingredient> getEveryIngredients() {
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+            try {
+                JSONArray jsonArray = new JSONArray(getJSONFromAsset(context, this.file));
+                Type listType = new TypeToken<List<Ingredient>>(){}.getType();
+                ingredients = new GsonBuilder().create().fromJson(jsonArray.toString(), listType);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         return ingredients;
     }
 

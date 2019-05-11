@@ -2,6 +2,7 @@ package com.ihm.project.menumaker.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,12 +31,10 @@ public class ContactsAdapter extends BaseAdapter implements Filterable {
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private Filter filter;
     private List<ContactData> mOriginalValues;
-    private Activity activity;
 
     public ContactsAdapter(Context context, List<ContactData> list, Activity activity){
             this.contactsList = list;
             mInflater = LayoutInflater.from(context);
-            this.activity = activity;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class ContactsAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //(1) : inflate layout
-        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.contact_list_item,
+        ConstraintLayout layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.contact_list_item,
                 parent, false);
 
 
@@ -70,13 +69,6 @@ public class ContactsAdapter extends BaseAdapter implements Filterable {
 
         //(4) : set tag as index
         layoutItem.setTag(position);
-        layoutItem.setOnClickListener(view -> {
-            Log.d("bo", "boosalsa");
-            int pos = (Integer) view.getTag();
-            MainActivity mainActivity = (MainActivity) activity;
-            mainActivity.openCreateGuestWithContactSelected(view, contactsList.get(pos).getCompositeName());
-        });
-
 
         return layoutItem;
     }
@@ -105,12 +97,6 @@ public class ContactsAdapter extends BaseAdapter implements Filterable {
                         mOriginalValues = new ArrayList<ContactData>(contactsList); // saves the original data in mOriginalValues
                     }
 
-                    /********
-                     *
-                     *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
-                     *  else does the Filtering and returns filtredArray(Filtered)
-                     *
-                     ********/
                     if (constraint == null || constraint.length() == 0)
                     {
 

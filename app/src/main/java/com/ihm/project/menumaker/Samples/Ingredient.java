@@ -1,6 +1,9 @@
 package com.ihm.project.menumaker.Samples;
 
+import com.google.gson.Gson;
 import com.ihm.project.menumaker.utils.IngredientsType;
+
+import java.util.List;
 
 public class Ingredient {
 
@@ -14,6 +17,7 @@ public class Ingredient {
         this.ingredientsType=ingredientsType;
         this.quantity = quantity;
     }
+
 
     public String getName(){
         return this.name;

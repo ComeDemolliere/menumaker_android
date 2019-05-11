@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
     private ContactsFragment contactsFragment;
+    private DishesFragment dishesFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new FridgeFragment());
                     return true;
                 case R.id.navigation_dishes:
-                    openDishFragment(new DishesFragment());
+                    dishesFragment = new DishesFragment();
+                    openDishFragment(dishesFragment);
                     return true;
             }
             return false;
@@ -114,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
        createGuestFragment.setName(contactName);
     }
 
+
+    public void openDishesFragment() {
+        this.openFragment(this.dishesFragment);
+    }
     public void openAddGuestActivity(View v) {
         this.openFragment(manageGuestFragment);
     }
@@ -133,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 
     public void chooseDish(View v){
         Dishes.setCurrentDish(Dishes.getDishes().get(dishFinderFragment.getViewPager().getCurrentItem()));
