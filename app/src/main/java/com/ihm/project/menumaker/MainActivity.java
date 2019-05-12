@@ -161,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
         openFragment(new ValidateDishFragment(), true);
     }
 
+    public void chooseDishRep(View v){ openFragment(new ValidateDishFragment(), true);}
+
     public void createIngredient(View view) {
         openFragment(ingredientAddingProvision, true);
     }

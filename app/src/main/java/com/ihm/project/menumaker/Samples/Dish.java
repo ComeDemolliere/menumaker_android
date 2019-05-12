@@ -33,6 +33,7 @@ public class Dish {
         this.date = dish.getDate();
         this.receipe = dish.getReceipe();
         this.ingredients = dish.getIngredients();
+        this.fav = dish.getFav();
     }
 
     public void setDate(Date date) { this.date = date; }
@@ -49,7 +50,7 @@ public class Dish {
 
     public boolean getFav(){ return this.fav;}
 
-    public void setFav(boolean fav) { this.fav = fav;}
+    public void setFav(boolean fav) { this.fav = fav; }
 
     public Date getDate() {
         return date;

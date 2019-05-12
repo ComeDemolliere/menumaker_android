@@ -75,11 +75,17 @@ public class Dishes {
     }
 
     public static void addDishToFav(Dish d) {
+        dishes.forEach(dish -> {
+            if (dish.equals(d)) dish.setFav(true);
+        });
         favoriteDishes.add(d);
         d.setFav(true);
     }
 
     public static void rmDishToFav(Dish d) {
+        dishes.forEach(dish -> {
+            if (dish.equals(d)) dish.setFav(false);
+        });
         d.setFav(false);
         favoriteDishes.remove(d);
     }
