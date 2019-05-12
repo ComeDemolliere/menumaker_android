@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".fragments.home.DishFinderFragment">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/toolbar">
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" >
 
         <Button
             android:id="@+id/button4"
@@ -21,21 +23,15 @@
             android:text="Valider le plat"
             android:onClick="chooseDish"/>
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
         <ImageView
             android:id="@+id/imageBack"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_centerVertical="true"
             android:src="@drawable/left_arrow"
-            android:onClick="onBackPressed"/>
-    </RelativeLayout>
+            android:onClick="onBackPressed" />
+
+    </android.support.v7.widget.Toolbar>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
