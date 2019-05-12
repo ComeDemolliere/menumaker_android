@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Ingredient;
@@ -80,21 +81,30 @@ public class IngredientAddingProvision extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        if (nameofIngredient.getText().toString().matches("")) {
+            Toast.makeText(getContext(), "Vous devez saisir un nom d'ingrédient", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            if(ingredienType==0)  {
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
-            }
+        if (quantity.getText().toString().matches("")) {
+            Toast.makeText(getContext(), "Vous devez saisir une quantité", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            if(ingredienType==1) {
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
-            }
+        if(ingredienType==0)  {
+            Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
+        }
 
-          if(ingredienType==2){
-                Ingredients.getProvisions().add(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
-            }
+        if(ingredienType==1) {
+            Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.LIQUIDE, Integer.parseInt(quantity.getText().toString())));
+        }
+
+      if(ingredienType==2){
+            Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
+        }
 
         getFragmentManager().popBackStackImmediate();
-        }
+    }
 
 
 

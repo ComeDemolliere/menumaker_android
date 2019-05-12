@@ -3,56 +3,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/takePicture"
-            android:layout_width="139dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="50sp"
-            android:onClick="dispatchTakePictureIntent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/recipeNameAdded"
-            android:layout_width="200sp"
-            android:layout_height="42dp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="100sp"
-            android:hint="@string/recipe_name"
-            android:inputType="text"
-            app:srcCompat="@drawable/add_pic"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/takePicture"
+                    android:layout_width="139dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp"
+                    app:srcCompat="@drawable/add_pic" />
 
-    <EditText
-        android:id="@+id/recipeAdded"
-        android:layout_width="match_parent"
-        android:layout_height="200sp"
-        android:layout_marginLeft="20sp"
-        android:hint="@string/recipe"
-        tools:layout_marginTop="40sp"
-        android:inputType="textMultiLine"
-        android:background="@android:color/transparent"
-        android:gravity="left"
-        />
+                <EditText
+                    android:id="@+id/recipeNameAdded"
+                    android:layout_width="200sp"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="140sp"
+                    android:hint="@string/recipe_name"
+                    android:inputType="text" />
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:layout_marginTop="20sp"
-        android:onClick="galleryAddPic"
-        />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/recipeAdded"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginBottom="50sp"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:hint="@string/recipe"
+                android:inputType="textMultiLine"
+                tools:layout_marginTop="80sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/ingredientName"
+                    android:layout_width="141sp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrédient"
+                    android:inputType="text" />
+
+
+                <EditText
+                    android:id="@+id/ingredientQuantity"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:hint="Quantité"
+                    android:inputType="numberDecimal" />
+
+
+                <Spinner
+                    android:id="@+id/ingredientType"
+                    android:layout_width="60sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ingredients_type" />
+                <Button
+                    android:id="@+id/button3_add_ingredient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:backgroundTintMode="add"
+                    android:text="Ajouter"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+
+
+
+            <ListView
+                android:id="@+id/recipeIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="148dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginBottom="120dp" />
+
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="100sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150sp"
+                android:layout_marginTop="20sp"
+                android:text="@string/save" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
 
 </LinearLayout>
+
 
 

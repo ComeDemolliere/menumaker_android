@@ -31,7 +31,6 @@ public class DishFinderFragment extends Fragment {
         dishAdapter = new DishFinderSlidePagerAdapter(getChildFragmentManager());
         pager = layoutItem.findViewById(R.id.viewpager);
         pager.setAdapter(dishAdapter);
-        System.out.println(pager.getCurrentItem());
 
         return view;
     }

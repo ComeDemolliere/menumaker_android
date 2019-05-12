@@ -1,28 +1,17 @@
 package com.ihm.project.menumaker;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
+import com.ihm.project.menumaker.fragments.SettingsFragment;
 import com.ihm.project.menumaker.fragments.dish.CreateRecipeFragment;
 import com.ihm.project.menumaker.fragments.guests.ContactsFragment;
 import com.ihm.project.menumaker.fragments.guests.CreateGuestFragment;
@@ -37,12 +26,6 @@ import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.Ingredients;
 import com.ihm.project.menumaker.utils.CalendarManager;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,16 +70,19 @@ public class MainActivity extends AppCompatActivity {
         Dishes.init(this.getBaseContext());
         Ingredients.init(this.getBaseContext());
 
-        //Request permissions
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 1);
-
-        calendarManager = new CalendarManager(this);
-        calendarManager.init();
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.miCompose : openFragment(new SettingsFragment(), false);
+                }
+                return false;
+            }
+        });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -118,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -169,29 +156,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void chooseDish(View v){
         Dishes.setCurrentDish(Dishes.getDishes().get(dishFinderFragment.getViewPager().getCurrentItem()));
-        openFragment(new ValidateDishFragment(), false);
+        openFragment(new ValidateDishFragment(), true);
     }
 
-    public void validateDish(View v){
-        addEventToCalendar();
-        Dishes.eatDish();
-        openFragment(new HomeFragment(), false);
-    }
-
-    private void addEventToCalendar(){
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            System.out.println("Holidays in United States");
-            return;
-        } else calendarManager.insert(Dishes.getCurrentDish());
-    }
+    public void chooseDishRep(View v){ openFragment(new ValidateDishFragment(), true);}
 
     public void createIngredient(View view) {
         openFragment(ingredientAddingProvision, true);
     }
+
 
     public void createIngredientToBuyList(View view) {
         openFragment(ingredientAddingProvision, true);
@@ -200,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
     public void addIngredient(){
         onBackPressed();
     }
+
 
     /*
     public void dispatchTakePictureIntent(View view) { //Send the intent of taking a picture

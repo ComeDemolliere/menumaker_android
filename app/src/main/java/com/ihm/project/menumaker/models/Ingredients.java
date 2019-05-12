@@ -11,6 +11,7 @@ import java.util.List;
 public class Ingredients {
     private static  List<Ingredient> provisions = new ArrayList<>();
     private static  List<Ingredient> toBuyList = new ArrayList<>();
+    private static List<Ingredient> recipeIngredients = new ArrayList<>();
 
     //Just initialize all the ingredients we know
     public static void init(Context context){
@@ -34,6 +35,8 @@ public class Ingredients {
     public static List<Ingredient> getToBuyList(){
         return toBuyList;
     }
+
+    public static List<Ingredient> getRecipeIngredients() { return recipeIngredients; }
 
     public static Ingredient rmIngToProvisions(Ingredient ing){
         Ingredient res = null;
@@ -65,6 +68,26 @@ public class Ingredients {
             }
         }
         toBuyList.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
+    }
+
+    public static void addToProvisions (Ingredient ing){
+        for (Ingredient i: provisions) {
+            if(i.equals(ing)){
+                i.setQuantity(i.getQuantity() + ing.getQuantity());
+                return;
+            }
+        }
+        provisions.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
+    }
+
+    public static void addToRecipeIngredients (Ingredient ing){
+        for (Ingredient i: recipeIngredients) {
+            if(i.equals(ing)){
+                i.setQuantity(i.getQuantity() + ing.getQuantity());
+                return;
+            }
+        }
+        recipeIngredients.add(new Ingredient(ing.getName(), ing.getIngredientsType(), ing.getQuantity()));
     }
 
 }

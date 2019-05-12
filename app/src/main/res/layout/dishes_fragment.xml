@@ -9,7 +9,8 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" >
+        android:inputType="text"
+        android:background="@color/colorPrimary">
 
     </SearchView>
 
@@ -18,11 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search"
-        android:layout_marginLeft="20sp"
-        android:layout_toRightOf="@+id/addGuest"
+        android:layout_marginLeft="30sp"
+        android:onClick="openCreateRecipe"
         android:text="@string/create_recipe"
         android:textAllCaps="false"
-        android:onClick="openCreateRecipe"/>
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/addGuest"
@@ -30,10 +31,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search"
-        android:layout_marginLeft="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30sp"
         android:onClick="openAddGuestActivity"
         android:text="@string/manage_guests"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"/>
 
     <ScrollView
         android:layout_width="match_parent"
