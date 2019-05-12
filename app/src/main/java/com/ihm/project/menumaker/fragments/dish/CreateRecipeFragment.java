@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,7 +64,7 @@ public class CreateRecipeFragment extends Fragment {
     private EditText ingredientName;
     private int ingredientType;
     private Spinner spinner;
-    private List<Ingredient> recipeIngredients = new ArrayList<>();
+    private List<Ingredient> recipeIngredients;
     private final int REQUEST_ID_IMAGE_CAPTURE = 100;
     private final int PERMISSION_REQUEST_READ_MEDIA = 100;
     private Bitmap photo;
@@ -78,6 +79,9 @@ public class CreateRecipeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //Initialisation des attributs à partir des éléments contenus dans le fragment
+        recipeIngredients = new ArrayList<>();
         myView = inflater.inflate(R.layout.create_recipe_fragment, container, false);
         recipe = myView.findViewById(R.id.recipeAdded);
         recipe_name = myView.findViewById(R.id.recipeNameAdded);
@@ -87,7 +91,11 @@ public class CreateRecipeFragment extends Fragment {
         takePictureImageView = myView.findViewById(R.id.takePicture);
         ingredientName = myView.findViewById(R.id.ingredientName);
         ingredientQuantity = myView.findViewById(R.id.ingredientQuantity);
+
         spinner = myView.findViewById(R.id.ingredientType);
+        String[] ingredientsTypes= {"g", "L", "u"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ingredientsTypes);
+        spinner.setAdapter(spinnerAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -135,7 +143,8 @@ public class CreateRecipeFragment extends Fragment {
             if(ingredientType==2){
                 recipeIngredients.add(new Ingredient(ingredientName.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(ingredientQuantity.getText().toString())));
             }
-
+            IngredientsListAdapter adapter = new IngredientsListAdapter(getContext(), recipeIngredients, R.layout.ingredient_layout);
+            recipeIngredientsView.setAdapter(adapter);
         });
 
         buttonSave.setOnClickListener((view) -> {
@@ -266,6 +275,18 @@ public class CreateRecipeFragment extends Fragment {
                 cursor.close();
             }
         }
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        recipe.setText("");
+        recipe_name.setText("");
+        List<Ingredient> emptyList = new ArrayList<>();
+        IngredientsListAdapter adapter1 = new IngredientsListAdapter(getContext(), emptyList, R.layout.ingredient_layout);
+        recipeIngredientsView.setAdapter(adapter1);
+        ingredientName.setText("");
+        ingredientQuantity.setText("");
     }
 
 }

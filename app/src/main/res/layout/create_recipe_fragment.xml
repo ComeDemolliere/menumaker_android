@@ -71,16 +71,15 @@
 
                 <Spinner
                     android:id="@+id/ingredientType"
-                    android:layout_width="60sp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
                     android:hint="@string/ingredients_type" />
                 <Button
                     android:id="@+id/button3_add_ingredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:backgroundTintMode="add"
-                    android:text="Ajouter"
+                    android:text="+"
                     android:visibility="visible" />
 
             </LinearLayout>
