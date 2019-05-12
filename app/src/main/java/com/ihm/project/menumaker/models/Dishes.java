@@ -7,7 +7,9 @@ import com.ihm.project.menumaker.Samples.Ingredient;
 import com.ihm.project.menumaker.utils.JsonManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class Dishes {
     private static List<Dish> dishes = new ArrayList<>();
@@ -22,6 +24,13 @@ public class Dishes {
         currentDish = null;
         JsonManager jsonManager = new JsonManager(context, "dish.json");
         dishes = jsonManager.getAllDishesFromJSON();
+
+        //init eat Dishes
+        Random rand = new Random();
+        setCurrentDish(dishes.get(rand.nextInt(dishes.size())));
+        getCurrentDish().setDate(new Date());
+        eatDish();
+
     }
 
     public static void add(Dish dish) {
@@ -43,7 +52,12 @@ public class Dishes {
 
     public static void eatDish(){
         if(currentDish != null){
-            dishesEaten.add(currentDish);
+            int ing;
+            for(ing = 0; ing < dishesEaten.size(); ing++) {
+                System.out.println("in " + dishesEaten.get(ing).getDate().getTime());
+                if (dishesEaten.get(ing).getDate().getTime() < currentDish.getDate().getTime()) break;
+            }
+            dishesEaten.add(ing, currentDish);
             if(!suggestedDishes.contains(currentDish))
                 suggestedDishes.add(currentDish);
 
