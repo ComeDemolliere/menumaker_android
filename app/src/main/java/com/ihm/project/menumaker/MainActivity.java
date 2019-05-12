@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         openFragment(ingredientAddingProvision, true);
     }
 
+
     public void createIngredientToBuyList(View view) {
         openFragment(ingredientAddingProvision, true);
     }
@@ -174,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
     public void addIngredient(){
         onBackPressed();
     }
+
 
     /*
     public void dispatchTakePictureIntent(View view) { //Send the intent of taking a picture
