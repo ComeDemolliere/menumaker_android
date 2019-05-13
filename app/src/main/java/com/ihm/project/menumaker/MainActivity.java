@@ -33,10 +33,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_TAKE_PHOTO = 1;
     private DishFinderFragment dishFinderFragment;
     private ManageGuestFragment manageGuestFragment;
-    private CalendarManager calendarManager;
     private IngredientAddingProvision ingredientAddingProvision;
     private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
@@ -173,9 +171,12 @@ public class MainActivity extends AppCompatActivity {
         openFragment(new ValidateDishFragment(), true);
     }
 
+    public void chooseDishRep(View v){ openFragment(new ValidateDishFragment(), true);}
+
     public void createIngredient(View view) {
         openFragment(ingredientAddingProvision, true);
     }
+
 
     public void createIngredientToBuyList(View view) {
         openFragment(ingredientAddingProvision, true);

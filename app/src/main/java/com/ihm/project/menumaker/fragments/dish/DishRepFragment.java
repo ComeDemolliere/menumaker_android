@@ -1,4 +1,4 @@
-package com.ihm.project.menumaker.fragments.home;
+package com.ihm.project.menumaker.fragments.dish;
 
 import android.app.AlertDialog;
 import android.graphics.Bitmap;
@@ -24,26 +24,14 @@ import com.ihm.project.menumaker.models.Dishes;
 
 import java.io.File;
 
-public class DishFinderContentFragment extends Fragment {
+public class DishRepFragment extends Fragment {
 
     private Dish dish;
-
-    public static DishFinderContentFragment newInstance(int pos) {
-        DishFinderContentFragment f = new DishFinderContentFragment();
-
-        Bundle bdl = new Bundle(1);
-
-        bdl.putInt("EXTRA_DISH_POS", pos);
-
-        f.setArguments(bdl);
-
-        return f;
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.dish_finder_content_fragment, container, false);
+        final View view = inflater.inflate(R.layout.dish_rep_fragment, container, false);
 
         RelativeLayout layoutItem = (RelativeLayout) view;
 
@@ -54,26 +42,24 @@ public class DishFinderContentFragment extends Fragment {
 
         Button button = layoutItem.findViewById(R.id.button2);
 
-        if(getArguments() != null){
-            dish = Dishes.getDishes().get(getArguments().getInt("EXTRA_DISH_POS"));
+        dish = Dishes.getCurrentDish();
 
-            Bitmap bm;
+        Bitmap bm;
 
-            File imgFile = new  File(dish.getImage());
+        File imgFile = new  File(dish.getImage());
 
-            if(imgFile.exists()){
-                bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            }
-            else{
-                int ressource = dish.getImageWithContext(getContext());
-                bm = BitmapFactory.decodeResource(getResources(), ressource);
-            }
-
-            image.setImageBitmap(bm);
-            name.setText(dish.getName());
-            swi.setChecked(dish.getFav());
-            recipe.setText(dish.getReceipe());
+        if(imgFile.exists()){
+            bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         }
+        else{
+            int ressource = dish.getImageWithContext(getContext());
+            bm = BitmapFactory.decodeResource(getResources(), ressource);
+        }
+
+        image.setImageBitmap(bm);
+        name.setText(dish.getName());
+        swi.setChecked(dish.getFav());
+        recipe.setText(dish.getReceipe());
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -83,10 +69,10 @@ public class DishFinderContentFragment extends Fragment {
             }
         });
 
-
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { createDialog(); }
         });
+
 
         return view;
     }
