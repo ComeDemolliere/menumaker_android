@@ -1,5 +1,6 @@
 [{
   "image": "bolognaise",
+  "nbPeople": "2",
   "name": "Pâtes bolognaise",
   "receipe": "Etape 1\nHachez l'ail, l'oignon, puis coupez la carotte et le céleri en petits dés (enlevez les principales nervures du céleri).\nEtape 2\nFaites chauffer l'huile dans une casserole assez grande. Faites revenir l'ail, l'oignon, la carotte et le céleri à feu doux pendant 5 min en remuant.\nEtape 3\nAugmenter la flamme, puis ajoutez le boeuf. Faites brunir et remuez de façon à ce que la viande ne fasse pas de gros paquets.\nEtape 4\nAjoutez le bouillon, le vin rouge, les tomates préalablement coupées assez grossièrement, le sucre et le persil haché. Portez à ébullition.\nEtape 5\nBaisser ensuite le feu et laissez mijoter à couvert 1h à 1h30, de façon à ce que le vin s'évapore.\nEtape 6\nFaites cuire les spaghetti, puis mettez-les dans un plat.\nEtape 7\nAjoutez la sauce bolognaise.",
   "ingredients": [
@@ -32,6 +33,7 @@
   {
     "image": "risotto",
     "name": "Risotto",
+    "nbPeople": "2",
     "receipe": "Etape 1\nIl existe sur la toile deux écoles du risotto aux champignons, à savoir celle du champignon qui cuit dans le riz, et celle des champignons poêlés ajoutés à la dernière minute.\nEtape 2\nAyant longtemps pratiqué les deux recettes, je souhaitais vous communiquer la mienne :\nEtape 3\nSéparer les champignons en deux (préférer des cèpes) : une partie servira à élaborer le bouillon et cuira avec le riz. L'autre partie sera poêlé au dernier moment pour la présentation et mettre en avant le champignon tout en conservant une texture ferme.\nEtape 4\nFaire blondir dans une casserole un demi-oignon émincé dans un mélange de beurre et d'huile d'olive.\nEtape 5\nAjouter et poêler les champignons.\nEtape 6\nAjouter du bouillon de légume ou de poule (assez pour nourrir le risotto).\nEtape 7\nLaisser mijoter le bouillon pour qu'il s'imprègne bien du goût et des saveurs des champignons.\nEtape 8\nPendant ce temps, émincer un petit peu d'ail, d'échalote et de persil séparément et réserver.\nEtape 9\nChauffer une nouvelle casserole (qui accueillera le risotto), ajouter un peu d'huile d'olive et de beurre que vous ferez blondir.\nEtape 10\nAjouter le riz carnaroli et remuer jusqu'à le rendre translucide (attention à la température, le riz ne doit pas coller).\nEtape 11\nDéglacer avec un verre de vin blanc sec.\nEtape 12\nContinuer à remuer pour que le riz n'adhère pas et laisser réduire l'alcool.\nEtape 13\nVerser une louche de bouillon que vous avez laissé mijoter et continuer à remuer constamment jusqu'à l'absorption totale du riz.\nEtape 14\nRéitérer l'étape 10 jusqu'au point de cuisson (préférer al dente).\nEtape 15\nJuste avant la fin, faire fondre du beurre et un peu d'huile d'olive dans une poêle tout en remuant le risotto.\nEtape 16\nFaire blondir l'échalote émincée dans la poêle puis ajouter l'ail (attention à ne pas le brûler).\nEtape 17\nFaire poêler les champignons tout en remuant le risotto, assaisonner et ajouter le persil émincé en fin de cuisson avec un tour de moulin à poivre puis réserver.\nEtape 18\nAssaisonner le risotto juste avant la fin.\nEtape 19\nDresser le riz dans des assiettes creuses. Placer soigneusement sur le haut les champignons poêlés.\nEtape 20\nCiseler du persil et parsèment le plat pour la présentation.\nEtape 21\nServir avec un tour de moulin à poivre et du parmesan.\nEtape 22\nLe gras du beurre va s'opposer au salé du parmesan et à l'amertume du cèpe en arrière plan.\nEtape 23\nLes puristes privilégieront un rouge italien d'âge moyen avec une structure légère mais à la fois ronde et consistante.\nEtape 24\nPersonnellement, je préfère un blanc sec minéral un peu évolué au accent de sous-bois. Un bourgogne fera parfaitement l'affaire.\nEtape 25\nBon appétit !",
     "ingredients": [
       {
@@ -74,6 +76,7 @@
   {
     "image": "carbonara",
     "name": "Pâtes carbonara",
+    "nbPeople": "2",
     "receipe": "Etape 1\nCuire les pâtes.\nEtape 2\nPendant ce temps, faire dorer les lardons dans une poêle à sec.\nEtape 3\nLorsqu'ils sont dorés, ajouter la crème et laisser mijoter durant 10 minutes.\nEtape 4\nEgoutter les pâtes, les verser dans la sauce, ajouter l'oeuf battu, mélanger et servir saupoudrer de fromage.",
     "ingredients": [
       {
@@ -111,6 +114,7 @@
   {
     "image": "powerboal",
     "name": "Power boal au quinoa",
+    "nbPeople": "1",
     "receipe": "Etape 1\nRincez le quinoa cru à l'eau froide à l’aide d’une passoire fine.\nEtape 2\nVersez le quinoa dans une casserole et ajoutez 1,5 à 2 fois son volume d’eau, selon que vous le voulez « al dente » ou bien cuit.\nEtape 3\nPortez l'eau à ébullition puis baissez le feu et laissez cuire le quinoa pendant 10 minutes.\nEtape 4\nPendant ce temps, versez l'oeuf entier dans une seconde casserole rempli.\nEtape 5\nPortez l'eau à ébullition puis baissez le feu et laissez cuire l'oeuf pendant 10 minutes afin qu'il soit dur.\nEtape 6\nQuand le quinoa est cuit, ôtez la casserole du feu et laissez-le gonfler pendant 5 minutes.\nEtape 7\nQuand l'oeuf dur est cuit, passez-le sous l'eau froide et écaillez-le. Tranchez-le ensuite en rondelles.\nEtape 8\nSi besoin, dénoyautez le demi-avocat puis prélevez délicatement sa chair à l'aide d'une cuillère. Citronnez-la afin d'éviter qu'elle noircisse puis tranchez-la délicatement en lamelles.\nEtape 9\nPlacez le quinoa dans un bol puis recouvrez-le joliment avec les rondelles d'oeuf dur, les lamelles d'avocat, les amandes entières et le cresson.\nEtape 10\nParsemez le power bolw de graines de pavot.\nEtape 11\nDégustez de suite pendant que le quinoa est l'oeuf dur sont encore chauds.",
     "ingredients": [
       {
