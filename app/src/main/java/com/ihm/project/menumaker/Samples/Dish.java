@@ -20,7 +20,7 @@ public class Dish {
 
     private int nbPeople = 1;
 
-    private int nbCurrent = 1;
+    private int nbCurrent = 0;
 
     private boolean fav = false;
 
@@ -72,7 +72,7 @@ public class Dish {
     public void setNbPeople(int nb){
         if(nbCurrent == 0) nbCurrent = nbPeople;
         if(nb > 0){
-            System.out.println("la");
+            System.out.println((float)nb/nbCurrent);
             ingredients.forEach(i -> i.setQuantity(((float)nb/nbCurrent) * i.getQuantity()));
             this.nbCurrent = nb;
         }
