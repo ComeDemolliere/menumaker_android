@@ -208,10 +208,10 @@ public class CreateRecipeFragment extends Fragment {
 
 
             } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(getContext(),"Action Cancelled",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Action annulée",Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getContext(),"Action Failed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"L'action a echoué",Toast.LENGTH_LONG).show();
             }
         }
 
