@@ -107,5 +107,47 @@
         "ingredientsType": "POUNDABLE"
       }
     ]
+  },
+  {
+    "image": "powerboal",
+    "name": "Power boal au quinoa",
+    "receipe": "Etape 1\nRincez le quinoa cru à l'eau froide à l’aide d’une passoire fine.\nEtape 2\nVersez le quinoa dans une casserole et ajoutez 1,5 à 2 fois son volume d’eau, selon que vous le voulez « al dente » ou bien cuit.\nEtape 3\nPortez l'eau à ébullition puis baissez le feu et laissez cuire le quinoa pendant 10 minutes.\nEtape 4\nPendant ce temps, versez l'oeuf entier dans une seconde casserole rempli.\nEtape 5\nPortez l'eau à ébullition puis baissez le feu et laissez cuire l'oeuf pendant 10 minutes afin qu'il soit dur.\nEtape 6\nQuand le quinoa est cuit, ôtez la casserole du feu et laissez-le gonfler pendant 5 minutes.\nEtape 7\nQuand l'oeuf dur est cuit, passez-le sous l'eau froide et écaillez-le. Tranchez-le ensuite en rondelles.\nEtape 8\nSi besoin, dénoyautez le demi-avocat puis prélevez délicatement sa chair à l'aide d'une cuillère. Citronnez-la afin d'éviter qu'elle noircisse puis tranchez-la délicatement en lamelles.\nEtape 9\nPlacez le quinoa dans un bol puis recouvrez-le joliment avec les rondelles d'oeuf dur, les lamelles d'avocat, les amandes entières et le cresson.\nEtape 10\nParsemez le power bolw de graines de pavot.\nEtape 11\nDégustez de suite pendant que le quinoa est l'oeuf dur sont encore chauds.",
+    "ingredients": [
+      {
+        "name": "quinoa cru",
+        "quantity": 80,
+        "ingredientsType": "POUNDABLE"
+      },
+      {
+        "name": "oeuf",
+        "quantity": 1,
+        "ingredientsType": "COUNTABLE"
+      },
+      {
+        "name": "avocat un peu ferme",
+        "quantity": 0.5,
+        "ingredientsType": "COUNTABLE"
+      },
+      {
+        "name": "amandes entières non mondées",
+        "quantity": 100,
+        "ingredientsType": "POUNDABLE"
+      },
+      {
+        "name": "cresson",
+        "quantity": 50,
+        "ingredientsType": "POUNDABLE"
+      },
+      {
+        "name": "pavots",
+        "quantity": 10,
+        "ingredientsType": "POUNDABLE"
+      },
+      {
+        "name": "jus de citron",
+        "quantity": 0.01,
+        "ingredientsType": "LIQUIDE"
+      }
+    ]
   }
 ]

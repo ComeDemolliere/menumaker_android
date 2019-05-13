@@ -21,6 +21,19 @@
         android:layout_toRightOf="@+id/dishImage"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/numberOfPeopleSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nb de convives"
+            android:layout_centerHorizontal="true"
+
+            android:inputType="numberDecimal"
+            android:layout_below="@+id/button2">
+
+
+        </EditText>
+
         <TextView
             android:id="@+id/dishName"
             android:layout_width="wrap_content"
