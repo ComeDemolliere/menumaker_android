@@ -18,6 +18,10 @@ public class Dish {
 
     private List<Ingredient> ingredients;
 
+    private int nbPeople = 1;
+
+    private int nbCurrent = 1;
+
     private boolean fav = false;
 
     public Dish(String name, String image, String receipe, List<Ingredient> ingredients) {
@@ -34,6 +38,7 @@ public class Dish {
         this.receipe = dish.getReceipe();
         this.ingredients = dish.getIngredients();
         this.fav = dish.getFav();
+        this.nbPeople = dish.getNbPeople();
     }
 
     public void setDate(Date date) { this.date = date; }
@@ -62,6 +67,19 @@ public class Dish {
 
     public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public void setNbPeople(int nb){
+        if(nbCurrent == 0) nbCurrent = nbPeople;
+        if(nb > 0){
+            System.out.println("la");
+            ingredients.forEach(i -> i.setQuantity(((float)nb/nbCurrent) * i.getQuantity()));
+            this.nbCurrent = nb;
+        }
+    }
+
+    public int getNbPeople(){
+        return this.nbPeople;
     }
 
     @Override
