@@ -2,7 +2,6 @@ package com.ihm.project.menumaker.Samples;
 
 import android.content.Context;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +24,14 @@ public class Dish {
     private boolean fav = false;
 
     public Dish(String name, String image, String receipe, List<Ingredient> ingredients) {
+        this.name = name;
+        this.image = image;
+        this.receipe = receipe;
+        this.ingredients = ingredients;
+    }
+
+    public Dish(String name, String image, String receipe, List<Ingredient> ingredients, int nbConvives) {
+        this.nbPeople=nbConvives;
         this.name = name;
         this.image = image;
         this.receipe = receipe;
