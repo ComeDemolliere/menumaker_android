@@ -86,7 +86,8 @@ public class ManageGuestFragment extends Fragment {
         super.onResume();
         this.guestList = GuestModel.getGuests();
         this.guestAdapter.setGuests(this.guestList);
-        this.guestAdapter.reset();
+        MainActivity mainActivity = (MainActivity) getContext();
+        this.guestAdapter.setSelectedGuestList(mainActivity.getCurrentSelectedGuest());
         guestAdapter.notifyDataSetChanged();
     }
 }

@@ -52,6 +52,10 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
         return selectedGuestList;
     }
 
+    public void setSelectedGuestList(List<GuestModel.Guest> selectedGuestList) {
+        this.selectedGuestList = selectedGuestList;
+    }
+
     public void reset() {
         this.selectedGuestList.clear();
     }
@@ -64,16 +68,15 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
         TextView name = layoutItem.findViewById(R.id.guestName);
         Button deleteButton = layoutItem.findViewById(R.id.deleteGuest);
         name.setText(guestsList.get(position).getName());
-        name.setTag(position);
+        layoutItem.setTag(position);
 
         if (selectedGuestList.contains(guestsList.get(position)))
             layoutItem.setBackgroundColor(Color.parseColor("#5668EC"));
 
-        name.setOnClickListener(new View.OnClickListener() {
+        layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GuestModel.Guest current = guestsList.get((Integer) v.getTag());
-                Log.d("bo-bo", "onItemClick: ");
                 if (!selectedGuestList.contains(current)) {
                     v.setBackgroundColor(Color.parseColor("#5668EC"));
                     selectedGuestList.add(current);

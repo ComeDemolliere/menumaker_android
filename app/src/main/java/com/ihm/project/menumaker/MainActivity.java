@@ -138,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
        this.openFragment(contactsFragment, false);
     }
 
+    public void openCreateManage(View v ) {
+        this.openFragment(this.manageGuestFragment, false);
+    }
     public void openCreateGuestWithContactSelected(View v, String contactName) {
        this.openFragment(createGuestFragment, false);
        createGuestFragment.setName(contactName);
@@ -145,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openDishesFragment() {
+        this.dishesFragment = new DishesFragment();
         this.openFragment(this.dishesFragment, false);
     }
     public void openAddGuestActivity(View v) {

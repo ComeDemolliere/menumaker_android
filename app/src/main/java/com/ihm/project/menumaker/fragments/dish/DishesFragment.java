@@ -101,11 +101,9 @@ public class DishesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         this.initList();
-        Log.d("bo-bo", "onResume: ");
-
     }
 
-    private void initList(){
+    public void initList(){
         favs = new ArrayList<>(Dishes.getFavoriteDishes());
         sugs = new ArrayList<>(Dishes.getSuggestedDishes());
         all = new ArrayList<>(Dishes.getDishes());
