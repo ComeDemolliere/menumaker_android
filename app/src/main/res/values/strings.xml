@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_fridge">Fridge</string>
     <string name="title_dishes">Dishes</string>
-    <string name="manage_guests">Ajouter des convives</string>
+    <string name="manage_guests">Gérer des convives</string>
     <string name="create_recipe">Ajouter une recette</string>
     <string name="save">Save</string>
     <string name="load">Load</string>

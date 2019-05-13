@@ -24,8 +24,12 @@ import com.ihm.project.menumaker.fragments.fridge.IngredientAddingProvision;
 import com.ihm.project.menumaker.fragments.fridge.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.models.GuestModel;
 import com.ihm.project.menumaker.models.Ingredients;
 import com.ihm.project.menumaker.utils.CalendarManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
     private ContactsFragment contactsFragment;
     private DishesFragment dishesFragment;
     private CreateRecipeFragment createRecipeFragment;
+
+
+
+    private List<GuestModel.Guest> currentSelectedGuest = new ArrayList<>();
+
+    public List<GuestModel.Guest> getCurrentSelectedGuest() {
+        return this.currentSelectedGuest;
+    }
 
     private String currentPhotoPath;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -173,6 +185,9 @@ public class MainActivity extends AppCompatActivity {
         onBackPressed();
     }
 
+    public void setCurrentSelectedGuest(List<GuestModel.Guest> currentSelectedGuest) {
+        this.currentSelectedGuest = currentSelectedGuest;
+    }
     /*
     public void dispatchTakePictureIntent(View view) { //Send the intent of taking a picture
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

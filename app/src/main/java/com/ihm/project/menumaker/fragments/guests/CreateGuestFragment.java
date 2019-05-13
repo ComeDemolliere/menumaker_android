@@ -105,5 +105,6 @@ public class CreateGuestFragment extends Fragment {
     public void onResume() {
         super.onResume();
         nameEditText.setText(this.name);
+        notLikingIngredients.clear();
     }
 }
