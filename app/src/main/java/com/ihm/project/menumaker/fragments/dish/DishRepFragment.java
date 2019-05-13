@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.ihm.project.menumaker.MainActivity;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.SimpleIngredientAdapter;
@@ -64,7 +65,15 @@ public class DishRepFragment extends Fragment {
         name.setText(dish.getName());
         swi.setChecked(dish.getFav());
         recipe.setText(dish.getReceipe());
-        nombreDeConvives.setText("" + dish.getNbPeople());
+
+        MainActivity mainActivity = (MainActivity) getContext();
+
+        int bo = mainActivity.getCurrentSelectedGuest().size();
+        if (bo != 0) {
+            dish.setNbPeople(bo + 1);
+            nombreDeConvives.setText("" + (bo + 1));
+        } else
+            nombreDeConvives.setText("" + dish.getNbPeople());
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
