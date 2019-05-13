@@ -39,17 +39,6 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.favorite_dishes_layout, viewGroup, false);
 
-        //move on click on item
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dishes.setCurrentDish(dishes.get(pos));
-                //move to your fragment
-                transaction.replace(R.id.main_container, new DishRepFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
         return new DishHolder(view);
 
@@ -73,6 +62,20 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
         }
 
         dishHolder.getDishImage().setImageBitmap(bm);
+
+        dishHolder.getDishName().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClicMethod(i);
+            }
+        });
+
+        dishHolder.getDishImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClicMethod(i);
+            }
+        });
     }
 
     @Override
@@ -83,5 +86,13 @@ public class FavAndSugDishRVAdapter extends RecyclerView.Adapter<DishHolder> {
     public void updateList(List<Dish> dishes){
         this.dishes = dishes;
         this.notifyDataSetChanged();
+    }
+
+    private void onClicMethod(int i) {
+        Dishes.setCurrentDish(dishes.get(i));
+        //move to your fragment
+        transaction.replace(R.id.main_container, new DishRepFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
