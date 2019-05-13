@@ -39,10 +39,20 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/numberOfPeopleSpinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nb de convives"
+
+                android:inputType="numberDecimal"
+                android:textAlignment="center"/>
+
+            <EditText
                 android:id="@+id/recipeAdded"
-                android:layout_width="match_parent"
-                android:layout_height="200sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp"
                 android:layout_marginBottom="50sp"
                 android:background="@android:color/transparent"
                 android:gravity="left"
@@ -85,8 +95,6 @@
             </LinearLayout>
 
 
-
-
             <ListView
                 android:id="@+id/recipeIngredients"
                 android:layout_width="wrap_content"
@@ -99,9 +107,9 @@
 
             <Button
                 android:id="@+id/buttonSave"
-                android:layout_width="100sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="150sp"
+                android:layout_marginLeft="145sp"
                 android:layout_marginTop="20sp"
                 android:text="@string/save" />
 

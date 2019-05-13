@@ -48,7 +48,6 @@ public class DishesAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.dishes_layout, parent, false);
 
-
         TextView name = layoutItem.findViewById(R.id.name);
         TextView date = layoutItem.findViewById(R.id.dateDish);
         ImageView image = layoutItem.findViewById(R.id.image);
@@ -69,6 +68,12 @@ public class DishesAdapter extends BaseAdapter {
             bm = BitmapFactory.decodeResource(parent.getResources(), ressource);
         }
         image.setImageBitmap(bm);
+
+        if(listView.get(position).getDate().getMonth() == new Date().getMonth() &&
+                listView.get(position).getDate().getDate() == new Date().getDate()){
+
+            name.setTextColor(mInflater.getContext().getResources().getColor(R.color.colorPrimary));
+        }
 
 
         Date dishDate = listView.get(position).getDate();

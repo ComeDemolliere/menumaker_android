@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -39,6 +42,7 @@ public class DishRepFragment extends Fragment {
         TextView name = layoutItem.findViewById(R.id.dishName);
         TextView recipe = layoutItem.findViewById(R.id.dishRecipe);
         Switch swi = layoutItem.findViewById(R.id.switch1);
+        EditText nombreDeConvives = layoutItem.findViewById(R.id.numberOfPeopleSpinner);
 
         Button button = layoutItem.findViewById(R.id.button2);
 
@@ -60,6 +64,7 @@ public class DishRepFragment extends Fragment {
         name.setText(dish.getName());
         swi.setChecked(dish.getFav());
         recipe.setText(dish.getReceipe());
+        nombreDeConvives.setText("" + dish.getNbPeople());
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -71,6 +76,24 @@ public class DishRepFragment extends Fragment {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { createDialog(); }
+        });
+
+        nombreDeConvives.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() >= 1){
+                    dish.setNbPeople(Integer.parseInt(s.toString().substring(s.toString().length() - 1)));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
         });
 
 

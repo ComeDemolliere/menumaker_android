@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">MENUMAKER</string>
-    <string name="title_home">Home</string>
-    <string name="title_fridge">Fridge</string>
-    <string name="title_dishes">Dishes</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_fridge">Provisions</string>
+    <string name="title_dishes">Plats</string>
     <string name="manage_guests">Gérer des convives</string>
     <string name="create_recipe">Ajouter une recette</string>
-    <string name="save">Save</string>
-    <string name="load">Load</string>
-    <string name="take_pic">Take pic</string>
+    <string name="save">Enregistrer</string>
+    <string name="load">Charger</string>
+    <string name="take_pic">Prendre une photo</string>
     <string name="title_provisions">Provisions</string>
     <string name="title_shop">Shopping List</string>
     <string name="validation_fridge">Ajouter un ingrédient</string>

@@ -26,7 +26,6 @@ import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.GuestModel;
 import com.ihm.project.menumaker.models.Ingredients;
-import com.ihm.project.menumaker.utils.CalendarManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void createIngredientToBuyList(View view) {
-        openFragment(ingredientAddingProvision, true);
+        openFragment(ingredientAddingToBuyList, true);
     }
 
     public void addIngredient(){
