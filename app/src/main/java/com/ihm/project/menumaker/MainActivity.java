@@ -1,5 +1,6 @@
 package com.ihm.project.menumaker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -25,6 +26,7 @@ import com.ihm.project.menumaker.fragments.fridge.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
 import com.ihm.project.menumaker.models.Ingredients;
+import com.ihm.project.menumaker.service.NotifyService;
 import com.ihm.project.menumaker.utils.CalendarManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         createGuestFragment = new CreateGuestFragment();
         contactsFragment = new ContactsFragment();
         createRecipeFragment = new CreateRecipeFragment();
+
     }
 
     @Override
@@ -111,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Intent intent = new Intent(MainActivity.this, NotifyService.class);
+        intent.putExtra("ingToBuyListService", 2);
+        intent.setAction("registerReceiver");
+        MainActivity.this.startService(intent);
     }
 
     public void openFragment(Fragment fragment, boolean stack) {
