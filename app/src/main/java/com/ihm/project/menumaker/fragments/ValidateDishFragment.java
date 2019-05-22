@@ -83,6 +83,11 @@ public class ValidateDishFragment extends Fragment {
                 else {
                     consumeDish();
                 }
+                Intent intent = new Intent();
+                intent.setAction("registerReceiver");
+                intent.putExtra("ingToBuyListService", 3);
+                intent.putExtra("ToastContent", "Succefuly Added");
+                getActivity().sendBroadcast(intent);
             }
         });
 

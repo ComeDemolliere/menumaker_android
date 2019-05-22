@@ -10,7 +10,6 @@ import java.util.List;
 public class GuestModel {
 
     private static List<Guest>  guests = new ArrayList<Guest>();
-
     public static void addGuest(Guest guest) {
         guests.add(guest);
     }
@@ -19,6 +18,17 @@ public class GuestModel {
     }
     public static void deleteGuestByIndex(int position) {
         guests.remove(position);
+    }
+
+
+    private static List<Guest>  selectedGuest = new ArrayList<>();
+
+    public static void selectGuest(Guest guest) {
+        selectedGuest.add(guest);
+    }
+
+    public static void deleteSelectedGuest(Guest guest) {
+        selectedGuest.remove(guest);
     }
 
     public static class Guest {
@@ -41,6 +51,10 @@ public class GuestModel {
 
         public String getName() {
             return name;
+        }
+
+        public List<Ingredient> getNotLikingsIngredients() {
+            return this.ingredientsNotLiking;
         }
     }
 }

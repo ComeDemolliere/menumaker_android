@@ -1,9 +1,11 @@
 package com.ihm.project.menumaker.fragments.fridge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -91,6 +93,12 @@ public class IngredientAddingProvision extends Fragment implements View.OnClickL
             return;
         }
 
+        Intent intent = new Intent();
+        intent.setAction("registerReceiver");
+        intent.putExtra("ingToBuyListService", 3);
+        intent.putExtra("ToastContent", "Succefuly Added");
+        getActivity().sendBroadcast(intent);
+
         if(ingredienType==0)  {
             Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.POUNDABLE, Integer.parseInt(quantity.getText().toString())));
         }
@@ -102,8 +110,8 @@ public class IngredientAddingProvision extends Fragment implements View.OnClickL
       if(ingredienType==2){
             Ingredients.addToProvisions(new Ingredient(nameofIngredient.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(quantity.getText().toString())));
         }
-
         getFragmentManager().popBackStackImmediate();
+
     }
 
 

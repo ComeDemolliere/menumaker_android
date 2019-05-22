@@ -1,7 +1,9 @@
 package com.ihm.project.menumaker.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 
 public class GuestAdapter extends BaseAdapter implements Filterable {
     private List<GuestModel.Guest> guestsList;
+    private List<GuestModel.Guest> selectedGuestList;
     private LayoutInflater mInflater; //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private List<GuestModel.Guest> mOriginalValues;
     private Filter filter;
@@ -27,6 +30,7 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
     public GuestAdapter(Context context, List<GuestModel.Guest> list){
         this.guestsList = list;
         mInflater = LayoutInflater.from(context);
+        this.selectedGuestList = new ArrayList<>();
     }
 
     @Override
@@ -44,6 +48,18 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
         return position;
     }
 
+    public List<GuestModel.Guest> getSelectedGuestList() {
+        return selectedGuestList;
+    }
+
+    public void setSelectedGuestList(List<GuestModel.Guest> selectedGuestList) {
+        this.selectedGuestList = selectedGuestList;
+    }
+
+    public void reset() {
+        this.selectedGuestList.clear();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ConstraintLayout layoutItem =
@@ -52,8 +68,28 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
         TextView name = layoutItem.findViewById(R.id.guestName);
         Button deleteButton = layoutItem.findViewById(R.id.deleteGuest);
         name.setText(guestsList.get(position).getName());
+        layoutItem.setTag(position);
+
+        if (selectedGuestList.contains(guestsList.get(position)))
+            layoutItem.setBackgroundColor(Color.parseColor("#5668EC"));
+
+        layoutItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GuestModel.Guest current = guestsList.get((Integer) v.getTag());
+                if (!selectedGuestList.contains(current)) {
+                    v.setBackgroundColor(Color.parseColor("#5668EC"));
+                    selectedGuestList.add(current);
+                }
+                else {
+                    selectedGuestList.remove(current);
+                    v.setBackgroundColor(Color.TRANSPARENT);
+                }
+            }
+        });
         deleteButton.setOnClickListener(event -> {
             this.guestsList.remove(position);
+            GuestModel.deleteGuestByIndex(position);
             this.notifyDataSetChanged();
         });
         return layoutItem;
@@ -109,5 +145,9 @@ public class GuestAdapter extends BaseAdapter implements Filterable {
             };
         }
         return filter;
+    }
+
+    public void setGuests(List<GuestModel.Guest> guests) {
+        this.guestsList = guests;
     }
 }

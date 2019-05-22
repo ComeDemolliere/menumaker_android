@@ -95,7 +95,7 @@ public class CreateGuestFragment extends Fragment {
         addGuestButton.setOnClickListener(event -> {
             GuestModel.addGuest(new GuestModel.Guest(nameEditText.getText().toString(), notLikingIngredients));
             MainActivity mainActivity = (MainActivity) getContext();
-            mainActivity.openDishesFragment();
+            mainActivity.openCreateManage(null);
         });
 
         return v;
@@ -105,5 +105,6 @@ public class CreateGuestFragment extends Fragment {
     public void onResume() {
         super.onResume();
         nameEditText.setText(this.name);
+        notLikingIngredients.clear();
     }
 }

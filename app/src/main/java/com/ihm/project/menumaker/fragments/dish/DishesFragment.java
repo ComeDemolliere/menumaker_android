@@ -6,18 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.ihm.project.menumaker.MainActivity;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
+import com.ihm.project.menumaker.Samples.Ingredient;
 import com.ihm.project.menumaker.adapters.FavAndSugDishRVAdapter;
 import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.models.GuestModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DishesFragment extends Fragment {
     private FavAndSugDishRVAdapter favAdapter;
@@ -92,10 +97,28 @@ public class DishesFragment extends Fragment {
         return  view;
     }
 
-    private void initList(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.initList();
+    }
+
+    public void initList(){
         favs = new ArrayList<>(Dishes.getFavoriteDishes());
         sugs = new ArrayList<>(Dishes.getSuggestedDishes());
         all = new ArrayList<>(Dishes.getDishes());
+
+        MainActivity mainActivity = (MainActivity) getContext();
+        List<GuestModel.Guest> guests = mainActivity.getCurrentSelectedGuest();
+        if (guests.size() != 0) {
+            for (GuestModel.Guest guest : guests) {
+                for (Ingredient ingredient: guest.getNotLikingsIngredients()) {
+                    favs = favs.stream().filter(dish -> !dish.getIngredients().contains(ingredient)).collect(Collectors.toList());
+                    sugs = sugs.stream().filter(dish -> !dish.getIngredients().contains(ingredient)).collect(Collectors.toList());
+                    all  = all.stream().filter(dish -> !dish.getIngredients().contains(ingredient)).collect(Collectors.toList());
+                }
+            }
+        }
     }
 
 

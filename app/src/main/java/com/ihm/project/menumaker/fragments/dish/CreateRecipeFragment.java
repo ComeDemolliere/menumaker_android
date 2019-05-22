@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,7 +64,7 @@ public class CreateRecipeFragment extends Fragment {
     private EditText ingredientName;
     private int ingredientType;
     private Spinner spinner;
-    private List<Ingredient> recipeIngredients = new ArrayList<>();
+    private List<Ingredient> recipeIngredients;
     private final int REQUEST_ID_IMAGE_CAPTURE = 100;
     private final int PERMISSION_REQUEST_READ_MEDIA = 100;
     private Bitmap photo;
@@ -71,6 +72,7 @@ public class CreateRecipeFragment extends Fragment {
     private Dish dish;
     private String imagePath;
     private IngredientsListAdapter ingredientsListAdapter;
+    private EditText numberOfGuests;
 
     public static CreateRecipeFragment newInstance(){ return new CreateRecipeFragment(); }
 
@@ -78,6 +80,9 @@ public class CreateRecipeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //Initialisation des attributs à partir des éléments contenus dans le fragment
+        recipeIngredients = new ArrayList<>();
         myView = inflater.inflate(R.layout.create_recipe_fragment, container, false);
         recipe = myView.findViewById(R.id.recipeAdded);
         recipe_name = myView.findViewById(R.id.recipeNameAdded);
@@ -87,7 +92,12 @@ public class CreateRecipeFragment extends Fragment {
         takePictureImageView = myView.findViewById(R.id.takePicture);
         ingredientName = myView.findViewById(R.id.ingredientName);
         ingredientQuantity = myView.findViewById(R.id.ingredientQuantity);
+        numberOfGuests = myView.findViewById(R.id.numberOfPeopleSpinner2);
+
         spinner = myView.findViewById(R.id.ingredientType);
+        String[] ingredientsTypes= {"g", "L", "u"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ingredientsTypes);
+        spinner.setAdapter(spinnerAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -135,7 +145,8 @@ public class CreateRecipeFragment extends Fragment {
             if(ingredientType==2){
                 recipeIngredients.add(new Ingredient(ingredientName.getText().toString(), IngredientsType.COUNTABLE, Integer.parseInt(ingredientQuantity.getText().toString())));
             }
-
+            IngredientsListAdapter adapter = new IngredientsListAdapter(getContext(), recipeIngredients, R.layout.ingredient_layout);
+            recipeIngredientsView.setAdapter(adapter);
         });
 
         buttonSave.setOnClickListener((view) -> {
@@ -152,6 +163,9 @@ public class CreateRecipeFragment extends Fragment {
                     if (recipe.getText().toString().matches("")) {
                         Toast.makeText(getContext(), "Vous devez saisir votre recette", Toast.LENGTH_SHORT).show();
                     }
+                    if(numberOfGuests.getText().toString().matches("")){
+                        Toast.makeText(getContext(), "Vous devez saisir un nombre de convives", Toast.LENGTH_SHORT).show();
+                    }
 
 
 
@@ -159,7 +173,8 @@ public class CreateRecipeFragment extends Fragment {
                    {
 
                         saveToInternalStorage(photo);
-                        dish = new Dish(recipe_name.getText().toString(),imagePath, recipe.getText().toString(), recipeIngredients);
+                        dish = new Dish(recipe_name.getText().toString(),imagePath, recipe.getText().toString(), recipeIngredients, Integer.parseInt(numberOfGuests.getText().toString()));
+                        System.out.println(Integer.parseInt(numberOfGuests.getText().toString()));
                         Dishes.add(dish);
                         Toast.makeText(getContext(),"Votre recette a bien été créee",Toast.LENGTH_LONG).show();
                         getFragmentManager().popBackStackImmediate();
@@ -199,10 +214,10 @@ public class CreateRecipeFragment extends Fragment {
 
 
             } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(getContext(),"Action Cancelled",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Action annulée",Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getContext(),"Action Failed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"L'action a echoué",Toast.LENGTH_LONG).show();
             }
         }
 
@@ -266,6 +281,19 @@ public class CreateRecipeFragment extends Fragment {
                 cursor.close();
             }
         }
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        recipe.setText("");
+        numberOfGuests.setText("");
+        recipe_name.setText("");
+        List<Ingredient> emptyList = new ArrayList<>();
+        IngredientsListAdapter adapter1 = new IngredientsListAdapter(getContext(), emptyList, R.layout.ingredient_layout);
+        recipeIngredientsView.setAdapter(adapter1);
+        ingredientName.setText("");
+        ingredientQuantity.setText("");
     }
 
 }

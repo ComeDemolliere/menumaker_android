@@ -1,22 +1,27 @@
 package com.ihm.project.menumaker.fragments.dish;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.ihm.project.menumaker.MainActivity;
 import com.ihm.project.menumaker.R;
 import com.ihm.project.menumaker.Samples.Dish;
 import com.ihm.project.menumaker.adapters.SimpleIngredientAdapter;
@@ -39,6 +44,7 @@ public class DishRepFragment extends Fragment {
         TextView name = layoutItem.findViewById(R.id.dishName);
         TextView recipe = layoutItem.findViewById(R.id.dishRecipe);
         Switch swi = layoutItem.findViewById(R.id.switch1);
+        EditText nombreDeConvives = layoutItem.findViewById(R.id.numberOfPeopleSpinner);
 
         Button button = layoutItem.findViewById(R.id.button2);
 
@@ -61,16 +67,55 @@ public class DishRepFragment extends Fragment {
         swi.setChecked(dish.getFav());
         recipe.setText(dish.getReceipe());
 
+        MainActivity mainActivity = (MainActivity) getContext();
+
+        int bo = mainActivity.getCurrentSelectedGuest().size();
+        if (bo != 0) {
+            dish.setNbPeople(bo + 1);
+            nombreDeConvives.setText("" + (bo + 1));
+        } else
+            nombreDeConvives.setText("" + dish.getNbPeople());
+
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) Dishes.addDishToFav(dish);
-                else Dishes.rmDishToFav(dish);
+                Intent intent = new Intent();
+                intent.setAction("registerReceiver");
+                intent.putExtra("ingToBuyListService", 3);
+                intent.putExtra("ToastContent", "Succefuly Added");
+
+                if(isChecked) {
+                    Dishes.addDishToFav(dish);
+                    intent.putExtra("ToastContent", "Ajout dans les favoris");
+                }
+                else {
+                    Dishes.rmDishToFav(dish);
+                    intent.putExtra("ToastContent", "Suppression des favoris");
+                }
+                getActivity().sendBroadcast(intent);
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { createDialog(); }
+        });
+
+        nombreDeConvives.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() >= 1){
+                    dish.setNbPeople(Integer.parseInt(s.toString().substring(s.toString().length() - 1)));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
         });
 
 

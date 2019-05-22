@@ -25,22 +25,34 @@ import com.ihm.project.menumaker.fragments.fridge.IngredientAddingProvision;
 import com.ihm.project.menumaker.fragments.fridge.IngredientAddingToBuyList;
 import com.ihm.project.menumaker.fragments.ValidateDishFragment;
 import com.ihm.project.menumaker.models.Dishes;
+import com.ihm.project.menumaker.models.GuestModel;
 import com.ihm.project.menumaker.models.Ingredients;
+
 import com.ihm.project.menumaker.service.NotifyService;
 import com.ihm.project.menumaker.utils.CalendarManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_TAKE_PHOTO = 1;
     private DishFinderFragment dishFinderFragment;
     private ManageGuestFragment manageGuestFragment;
-    private CalendarManager calendarManager;
     private IngredientAddingProvision ingredientAddingProvision;
     private IngredientAddingToBuyList ingredientAddingToBuyList;
     private CreateGuestFragment createGuestFragment;
     private ContactsFragment contactsFragment;
     private DishesFragment dishesFragment;
     private CreateRecipeFragment createRecipeFragment;
+
+
+
+    private List<GuestModel.Guest> currentSelectedGuest = new ArrayList<>();
+
+    public List<GuestModel.Guest> getCurrentSelectedGuest() {
+        return this.currentSelectedGuest;
+    }
 
     private String currentPhotoPath;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -135,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
        this.openFragment(contactsFragment, false);
     }
 
+    public void openCreateManage(View v ) {
+        this.openFragment(this.manageGuestFragment, false);
+    }
     public void openCreateGuestWithContactSelected(View v, String contactName) {
        this.openFragment(createGuestFragment, false);
        createGuestFragment.setName(contactName);
@@ -142,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openDishesFragment() {
+        this.dishesFragment = new DishesFragment();
         this.openFragment(this.dishesFragment, false);
     }
     public void openAddGuestActivity(View v) {
@@ -176,14 +192,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void createIngredientToBuyList(View view) {
-        openFragment(ingredientAddingProvision, true);
+        openFragment(ingredientAddingToBuyList, true);
     }
 
     public void addIngredient(){
         onBackPressed();
     }
 
+    public void setCurrentSelectedGuest(List<GuestModel.Guest> currentSelectedGuest) {
+        this.currentSelectedGuest = currentSelectedGuest;
+    }
 
+    public void sendToast(String s) {
+        Intent intent = new Intent();
+        intent.setAction("registerReceiver");
+        intent.putExtra("ingToBuyListService", 3);
+        intent.putExtra("ToastContent", s);
+       sendBroadcast(intent);
+    }
     /*
     public void dispatchTakePictureIntent(View view) { //Send the intent of taking a picture
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

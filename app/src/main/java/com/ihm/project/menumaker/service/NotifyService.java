@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.widget.Toast;
 
 import com.ihm.project.menumaker.R;
 
@@ -25,6 +26,7 @@ public class NotifyService extends Service {
     final static String SERVICE_BROADCAST_KEY = "ingToBuyListService";
     final static int RQS_STOP_SERVICE = 1;
     final static int RQS_SEND_SERVICE = 2;
+    final static int RQS_SEND_TOAST = 3;
     private NotifyServiceReceiver notifyServiceReceiver;
     private NotificationManager notificationManager;
 
@@ -89,6 +91,16 @@ public class NotifyService extends Service {
 
     }
 
+    public void sendToast(String s){
+        Context context = getApplicationContext();
+        CharSequence text = s;
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+    }
+
 
     class NotifyServiceReceiver extends BroadcastReceiver {
         @Override
@@ -103,6 +115,9 @@ public class NotifyService extends Service {
             }
             if(rqs == RQS_SEND_SERVICE) {
                 sendNotification();
+            }
+            if(rqs == RQS_SEND_TOAST) {
+                sendToast(intent.getStringExtra("ToastContent"));
             }
         }
     }
